@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dwkxlbr2q60nh"]
 
-[ext_resource type="PackedScene" uid="uid://cfde4dumfslig" path="res://CharacterController/character_controller.tscn" id="1_n1d02"]
+[ext_resource type="PackedScene" uid="uid://cfde4dumfslig" path="res://player/player.tscn" id="1_n1d02"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p6h5i"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -29,13 +29,15 @@ environment = SubResource("Environment_tsyuw")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 5.26269, 0)
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Ground" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 mesh = SubResource("PlaneMesh_io3ih")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_talri")
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("1_n1d02")]
+[node name="Player" type="Node" parent="."]
+
+[node name="CharacterBody3D" parent="Player" instance=ExtResource("1_n1d02")]

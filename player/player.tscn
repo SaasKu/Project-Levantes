@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfde4dumfslig"]
+[gd_scene load_steps=5 format=3 uid="uid://cfde4dumfslig"]
 
-[ext_resource type="Script" path="res://CharacterController/character_controller.gd" id="1_r47ex"]
+[ext_resource type="Script" path="res://player/player_controller.gd" id="1_r47ex"]
+[ext_resource type="PackedScene" uid="uid://cgncprbjcjodd" path="res://Models/smg.gltf" id="2_rnwfx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j86j8"]
 
@@ -8,6 +9,8 @@
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_r47ex")
+HEADBOB_SWAY_AMOUNT = 0.01
+gun_bobbing_amplitude = 0.01
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -15,6 +18,7 @@ shape = SubResource("CapsuleShape3D_j86j8")
 
 [node name="WorldModel" type="Node3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0138981, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -27,3 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79, 0)
 [node name="Camera3D" type="Camera3D" parent="Head"]
 unique_name_in_owner = true
 cull_mask = 1048573
+current = true
+
+[node name="gun" parent="Head/Camera3D" instance=ExtResource("2_rnwfx")]
+transform = Transform3D(0.049744, 0.000510619, 0.00502695, 0, 0.049744, -0.00505281, -0.00505281, 0.00502695, 0.0494894, 0.495549, -0.114912, -0.301104)

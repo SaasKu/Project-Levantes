@@ -5,15 +5,20 @@ extends CharacterBody3D
 @export var bhop_on := true
 @export var walk_speed := 7.0
 
-const HEADBOB_SWAY_AMOUNT = 0.05
-const HEADBOB_FREQ = 2.5
+@export var HEADBOB_SWAY_AMOUNT = 0.05
+@export var HEADBOB_FREQ = 1
 var headbob_time = 0.0
 
 @export var air_cap := 0.85
 @export var air_accel := 880.0
 @export var air_move_speed := 500.0
 
+@export var gun_bobbing_amplitude := 0.05
+@export var gun_bobbing_frequency := 1
+
 var wish_dir := Vector3.ZERO
+
+@onready var gun_model: Node3D = $Head/Camera3D/gun
 
 func get_move_speed() -> float:
 	return walk_speed
@@ -34,16 +39,22 @@ func _unhandled_input(event):
 			rotate_y(-event.relative.x * look_sens)
 			%Camera3D.rotate_x(-event.relative.y * look_sens)
 			%Camera3D.rotation.x = clamp(%Camera3D.rotation.x, deg_to_rad(-90), deg_to_rad(90))
-		
-		
-		
+
 func _headbob_effect(delta):
-	headbob_time += delta * self.velocity.length()
-	%Camera3D.transform.origin * Vector3(
-		cos(headbob_time * HEADBOB_FREQ * 0.5) * HEADBOB_SWAY_AMOUNT,
-		sin(headbob_time * HEADBOB_FREQ) * HEADBOB_SWAY_AMOUNT,
-		0,
-	)
+	if self.velocity.length() > 0:
+		headbob_time += delta * self.velocity.length()
+		var sway_x = cos(headbob_time * HEADBOB_FREQ * 0.5) * HEADBOB_SWAY_AMOUNT
+		var sway_y = sin(headbob_time * HEADBOB_FREQ) * HEADBOB_SWAY_AMOUNT
+		
+		%Camera3D.transform.origin += Vector3(sway_x, sway_y, 0)
+		if gun_model:
+			var gun_bob_offset = Vector3(0, sin(headbob_time * gun_bobbing_frequency) * gun_bobbing_amplitude, 0)
+			gun_model.position = Vector3(0.496, -0.115, -0.301) + gun_bob_offset
+	else:
+		if gun_model:
+			headbob_time = 0.0
+			gun_model.position = Vector3(0.496, -0.115, -0.301)  # Reset to base position when not moving
+
 func _process(delta):
 	pass
 
@@ -59,7 +70,6 @@ func _handle_air_physics(delta) -> void:
 		var accel_speed = air_accel * air_move_speed * delta
 		accel_speed = min(accel_speed, add_speed_till_max)
 		self.velocity += accel_speed * wish_dir
-	
 	
 func _handle_ground_physics(delta) -> void:
 	self.velocity.x = wish_dir.x * get_move_speed()
@@ -78,4 +88,3 @@ func _physics_process(delta):
 		_handle_air_physics(delta)
 	
 	move_and_slide()
-	
