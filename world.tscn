@@ -43,7 +43,6 @@ shape = SubResource("ConcavePolygonShape3D_talri")
 [node name="Player" type="Node" parent="."]
 
 [node name="CharacterBody3D" parent="Player" instance=ExtResource("1_n1d02")]
-gun_bobbing_amplitude = 0.002
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.285, 0, 0, 0, 3.285, 0, 0, 0, 3.285, 0, 1.47782, -7.27788)

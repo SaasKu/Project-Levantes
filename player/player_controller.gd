@@ -20,6 +20,9 @@ var headbob_time = 0.0
 @onready var mainCam = $Head/Camera3D
 @onready var gunCam = $Head/Camera3D/SubViewportContainer/SubViewport/GunCam
 
+var guns = [] 
+var curGunNo = 0
+
 var wish_dir := Vector3.ZERO
 
 

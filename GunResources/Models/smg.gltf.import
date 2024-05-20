@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cgncprbjcjodd"
-path="res://.godot/imported/smg.gltf-0cb56c1c3deffae836736a4b5347316e.scn"
+path="res://.godot/imported/smg.gltf-0dd27166e75403e5e3f5c0dc4dbca000.scn"
 
 [deps]
 
-source_file="res://Models/smg.gltf"
-dest_files=["res://.godot/imported/smg.gltf-0cb56c1c3deffae836736a4b5347316e.scn"]
+source_file="res://GunResources/Models/smg.gltf"
+dest_files=["res://.godot/imported/smg.gltf-0dd27166e75403e5e3f5c0dc4dbca000.scn"]
 
 [params]
 
