@@ -13,12 +13,15 @@ var headbob_time = 0.0
 @export var air_accel := 880.0
 @export var air_move_speed := 500.0
 
-@export var gun_bobbing_amplitude := 0.05
+@export var gun_bobbing_amplitude := 0.002
 @export var gun_bobbing_frequency := 1
+
+@onready var gun:Node3D = $Head/Camera3D/smgModel
+@onready var mainCam = $Head/Camera3D
+@onready var gunCam = $Head/Camera3D/SubViewportContainer/SubViewport/GunCam
 
 var wish_dir := Vector3.ZERO
 
-@onready var gun_model: Node3D = $Head/Camera3D/gun
 
 func get_move_speed() -> float:
 	return walk_speed
@@ -46,16 +49,13 @@ func _headbob_effect(delta):
 		var sway_x = cos(headbob_time * HEADBOB_FREQ * 0.5) * HEADBOB_SWAY_AMOUNT
 		var sway_y = sin(headbob_time * HEADBOB_FREQ) * HEADBOB_SWAY_AMOUNT
 		
-		%Camera3D.transform.origin += Vector3(sway_x, sway_y, 0)
-		if gun_model:
-			var gun_bob_offset = Vector3(0, sin(headbob_time * gun_bobbing_frequency) * gun_bobbing_amplitude, 0)
-			gun_model.position = Vector3(0.496, -0.115, -0.301) + gun_bob_offset
-	else:
-		if gun_model:
-			headbob_time = 0.0
-			gun_model.position = Vector3(0.496, -0.115, -0.301)  # Reset to base position when not moving
+		%Camera3D.position += Vector3(sway_x, sway_y, 0)
 
+		var gun_bob_offset = Vector3(0, sin(headbob_time * gun_bobbing_frequency) * gun_bobbing_amplitude, 0)
+		gun.position += gun_bob_offset
+	
 func _process(delta):
+	gunCam.global_transform = mainCam.global_transform
 	pass
 
 func _handle_air_physics(delta) -> void:

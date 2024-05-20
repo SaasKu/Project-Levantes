@@ -29,6 +29,24 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Bolt": {
+"mesh_instance/layers": 2
+},
+"PATH:Mag": {
+"mesh_instance/layers": 2
+},
+"PATH:Main": {
+"mesh_instance/layers": 2
+},
+"PATH:Port": {
+"mesh_instance/layers": 2
+},
+"PATH:Trigger": {
+"mesh_instance/layers": 2
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1
