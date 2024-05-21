@@ -1,13 +1,19 @@
 # Gun.gd
-extends Node
+class_name Gun
+extends Node3D
 
-# Properties that all guns should have
+	# Properties that all guns should have
 @export var fire_rate: float = 0.5  # Time between shots in seconds
-@export var bullet_scene: PackedScene  # The scene for the bullets
-@export var muzzle_position: Vector3  # Path to the muzzle position node
+var bullet_scene: PackedScene  # The scene for the bullets
+@export var muzzle_position: Vector3  
+var model: Node3D
+var muzzle:Node3D
 # A flag to check if the gun can fire
 var can_fire: bool = true
 var last_shot_time: float = 0.0
+
+func _init():
+	pass
 
 func _ready():
 	pass
@@ -37,3 +43,9 @@ func aim():
 # Optional method for stopping shooting (e.g., for burst fire)
 func stop_shoot():
 	pass
+func getModel() -> Node3D:
+	return self.model
+
+func getMuzzle() -> Node3D:
+	return self.model
+

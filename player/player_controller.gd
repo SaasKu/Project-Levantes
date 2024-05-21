@@ -5,7 +5,7 @@ extends CharacterBody3D
 @export var bhop_on := true
 @export var walk_speed := 7.0
 
-@export var HEADBOB_SWAY_AMOUNT = 0.05
+@export var HEADBOB_SWAY_AMOUNT = 0.0001
 @export var HEADBOB_FREQ = 1
 var headbob_time = 0.0
 
@@ -13,10 +13,11 @@ var headbob_time = 0.0
 @export var air_accel := 880.0
 @export var air_move_speed := 500.0
 
-@export var gun_bobbing_amplitude := 0.002
+@export var gun_bobbing_amplitude := 0.001
 @export var gun_bobbing_frequency := 1
 
-@onready var gun:Node3D = $Head/Camera3D/smgModel
+@onready var curGun:Gun
+@onready var Head = $Head
 @onready var mainCam = $Head/Camera3D
 @onready var gunCam = $Head/Camera3D/SubViewportContainer/SubViewport/GunCam
 
@@ -30,6 +31,8 @@ func get_move_speed() -> float:
 	return walk_speed
 
 func _ready():
+	curGun = SMG.new()
+	mainCam.add_child(curGun)
 	for child in %WorldModel.find_children("*", "VisualInstance3D"):
 		child.set_layer_mask_value(1, false)
 		child.set_layer_mask_value(2, true)
@@ -37,6 +40,9 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			if curGun:
+				curGun.trigger_shoot()
 	elif event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
@@ -53,9 +59,12 @@ func _headbob_effect(delta):
 		var sway_y = sin(headbob_time * HEADBOB_FREQ) * HEADBOB_SWAY_AMOUNT
 		
 		%Camera3D.position += Vector3(sway_x, sway_y, 0)
+		curGun.getModel().global_transform.origin += Vector3(sway_x, sway_y, 0)
 
 		var gun_bob_offset = Vector3(0, sin(headbob_time * gun_bobbing_frequency) * gun_bobbing_amplitude, 0)
-		gun.position += gun_bob_offset
+		if curGun:
+			curGun.getModel().global_transform.origin  += gun_bob_offset
+
 	
 func _process(delta):
 	gunCam.global_transform = mainCam.global_transform
