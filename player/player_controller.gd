@@ -16,7 +16,7 @@ var headbob_time = 0.0
 @export var gun_bobbing_amplitude := 0.002
 @export var gun_bobbing_frequency := 1
 
-@onready var gun:Node3D = $Head/Camera3D/smgModel
+@onready var gun:Node3D = $Head/Camera3D/Weapons_Manager/WeaponRig/smgModel/smgModel
 @onready var mainCam = $Head/Camera3D
 @onready var gunCam = $Head/Camera3D/SubViewportContainer/SubViewport/GunCam
 
@@ -51,8 +51,8 @@ func _headbob_effect(delta):
 		
 		%Camera3D.position += Vector3(sway_x, sway_y, 0)
 
-		var gun_bob_offset = Vector3(0, sin(headbob_time * gun_bobbing_frequency) * gun_bobbing_amplitude, 0)
-		gun.position += gun_bob_offset
+		#var gun_bob_offset = Vector3(0, sin(headbob_time * gun_bobbing_frequency) * gun_bobbing_amplitude, 0)
+		#gun.position += gun_bob_offset
 	
 func _process(delta):
 	gunCam.global_transform = mainCam.global_transform

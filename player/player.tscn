@@ -1,11 +1,158 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfde4dumfslig"]
+[gd_scene load_steps=13 format=3 uid="uid://cfde4dumfslig"]
 
 [ext_resource type="Script" path="res://player/player_controller.gd" id="1_r47ex"]
 [ext_resource type="PackedScene" uid="uid://cgncprbjcjodd" path="res://Models/smg.gltf" id="2_fe7wy"]
+[ext_resource type="Script" path="res://player/Weapons_Manager.gd" id="2_wsucc"]
+[ext_resource type="Resource" uid="uid://bxeiwh54b4ilj" path="res://Models/Weapons/weapon resources/smgModel.tres" id="3_0poh5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j86j8"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u1c20"]
+
+[sub_resource type="Animation" id="Animation_od7ww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.384012, -0.13917, -0.72865)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rfi0f"]
+resource_name = "smg_equip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.0412931, -0.860729, -0.72865), Vector3(0.164821, -0.494892, -0.72865), Vector3(0.550565, -0.0666522, -0.72865), Vector3(0.384012, -0.13917, -0.72865)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.580406, 0.751261, -0.310857), Vector3(-0.450121, 0.396338, -0.180099), Vector3(0.0913574, -0.133327, -0.0122354), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_om2a3"]
+resource_name = "smg_fire"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.384012, -0.13917, -0.72865), Vector3(0.384012, -0.13917, -0.66449), Vector3(0.384012, -0.13917, -0.516098), Vector3(0.384012, -0.13917, -0.72865)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01, 0.02, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_erdql"]
+resource_name = "smg_reload"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.384012, -0.13917, -0.675512), Vector3(0.226915, -0.271105, -0.675512), Vector3(0.226915, -0.271105, -0.675512), Vector3(0.384012, -0.13917, -0.675512)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.163601, 0.307744, 0.473543), Vector3(-0.163601, 0.307744, 0.473543), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_klhtd"]
+resource_name = "smg_unequip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.384012, -0.13917, -0.72865), Vector3(0.235975, -0.386853, -0.72865), Vector3(-0.14228, -0.809356, -0.72865)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/smgModel:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.305907, 0.334079, 0.473714), Vector3(-0.703852, 0.842487, 0.294653)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_okd0m"]
+_data = {
+"RESET": SubResource("Animation_od7ww"),
+"smg_equip": SubResource("Animation_rfi0f"),
+"smg_fire": SubResource("Animation_om2a3"),
+"smg_reload": SubResource("Animation_erdql"),
+"smg_unequip": SubResource("Animation_klhtd")
+}
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_r47ex")
@@ -33,9 +180,6 @@ unique_name_in_owner = true
 cull_mask = 1048573
 current = true
 
-[node name="smgModel" parent="Head/Camera3D" instance=ExtResource("2_fe7wy")]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.384012, -0.13917, -0.72865)
-
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Head/Camera3D"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,3 +196,22 @@ render_target_update_mode = 4
 [node name="GunCam" type="Camera3D" parent="Head/Camera3D/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79666, 0)
 cull_mask = 1047554
+
+[node name="Weapons_Manager" type="Node3D" parent="Head/Camera3D"]
+script = ExtResource("2_wsucc")
+_weapon_resources = Array[Resource("res://Models/Weapons/weapon_resource.gd")]([ExtResource("3_0poh5")])
+Starting_Weapons = Array[String](["smgModel"])
+
+[node name="WeaponRig" type="Node3D" parent="Head/Camera3D/Weapons_Manager"]
+
+[node name="smgModel" parent="Head/Camera3D/Weapons_Manager/WeaponRig" instance=ExtResource("2_fe7wy")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.384012, -0.13917, -0.72865)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Camera3D/Weapons_Manager/WeaponRig"]
+unique_name_in_owner = true
+root_node = NodePath("../../../../..")
+libraries = {
+"": SubResource("AnimationLibrary_okd0m")
+}
+
+[connection signal="animation_finished" from="Head/Camera3D/Weapons_Manager/WeaponRig/AnimationPlayer" to="Head/Camera3D/Weapons_Manager" method="_on_animation_player_animation_finished"]

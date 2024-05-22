@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://bxeiwh54b4ilj"]
+
+[ext_resource type="Script" path="res://Models/Weapons/weapon_resource.gd" id="1_w8eg2"]
+
+[resource]
+script = ExtResource("1_w8eg2")
+Wep_Name = "smgModel"
+Equip_Ani = "smg_equip"
+Fire_Ani = "smg_fire"
+Reload_Ani = "smg_reload"
+Dequip_Ani = "smg_unequip"
+Curr_Ammo = 30
+Reserve_Ammo = 120
+Mag = 30
+Max_Ammo = 200
+isAutomatic = true
