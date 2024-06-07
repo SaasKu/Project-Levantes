@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwkxlbr2q60nh"]
+[gd_scene load_steps=10 format=3 uid="uid://dwkxlbr2q60nh"]
 
 [ext_resource type="PackedScene" uid="uid://cfde4dumfslig" path="res://player/player.tscn" id="1_n1d02"]
 [ext_resource type="ArrayMesh" uid="uid://bpv0vse6jqelh" path="res://Models/Weapons/smg/smg_obj_var.obj" id="2_m5if2"]
+[ext_resource type="PackedScene" uid="uid://b6twmcaboouo2" path="res://Models/Weapons/burst_rifle/burst_rifle.glb" id="3_7yled"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p6h5i"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,5 +51,8 @@ transform = Transform3D(3.285, 0, 0, 0, 3.285, 0, 0, 0, 3.285, 0, 1.47782, -7.27
 mesh = SubResource("BoxMesh_058ee")
 
 [node name="SmgObjVar" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1164, 9.55337, 5.87188)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -25.032, 17.8525, 7.47728)
 mesh = ExtResource("2_m5if2")
+
+[node name="burst_rifle" parent="." instance=ExtResource("3_7yled")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -29.3529, 7.19964, 3.18952)
