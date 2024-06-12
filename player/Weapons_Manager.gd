@@ -23,12 +23,12 @@ func _input(event):
 	if event.is_action_pressed("Weapon_Switch"):
 		Weapon_Indicator = min(Weapon_Indicator+1, Weapon_Stack.size()-1)
 		exit(Weapon_Stack[Weapon_Indicator])
-func Initialize(_Star_Weaps: Array):
+func Initialize(_Starting_Weaps: Array):
 	#Creates the dictionary that refers to our guns
 	for weapon in _weapon_resources:
 		Weapon_List[weapon.Wep_Name] = weapon
 	
-	for s in _Star_Weaps:
+	for s in _Starting_Weaps:
 		Weapon_Stack.push_back(s)
 	
 	Current_Weapon = Weapon_List[Weapon_Stack[0]]
@@ -40,15 +40,17 @@ func enter():
 	
 	
 func exit(_next_weapon: String):
-	#In order to change weapons first call exit1
+	#In order to change weapons first call exit
 	if _next_weapon != Current_Weapon.Wep_Name:
 		if Animation_Player.get_current_animation() != Current_Weapon.Dequip_Ani:
 			Animation_Player.play(Current_Weapon.Dequip_Ani)
 			Other_Weapon = _next_weapon
 func switch_Wep(weapon_name: String):
-	Current_Weapon = Weapon_List[weapon_name]
-	Other_Weapon = ""
-	enter()
+	var Weapon_Index = Weapon_List.find(weapon_name)
+	if Weapon_Index != -1:
+		Current_Weapon = Weapon_List[weapon_name]
+		Other_Weapon = ""
+		enter()
 
 
 

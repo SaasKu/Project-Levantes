@@ -13,10 +13,10 @@ var headbob_time = 0.0
 @export var air_accel := 880.0
 @export var air_move_speed := 500.0
 
-@export var gun_bobbing_amplitude := 0.002
-@export var gun_bobbing_frequency := 1
+#@export var gun_bobbing_amplitude := 0.002
+#@export var gun_bobbing_frequency := 1
 
-@onready var gun:Node3D = $Head/Camera3D/Weapons_Manager/WeaponRig/smgModel/smgModel
+#@onready var gun:Node3D = $Head/Camera3D/Weapons_Manager/WeaponRig/smgModel/smgModel
 @onready var mainCam = $Head/Camera3D
 @onready var gunCam = $Head/Camera3D/SubViewportContainer/SubViewport/GunCam
 

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://uir3oyykag5q"]
+
+[ext_resource type="Script" path="res://Models/Weapons/weapon_resource.gd" id="1_yf1dw"]
+
+[resource]
+script = ExtResource("1_yf1dw")
+Wep_Name = "burst_rifle"
+Equip_Ani = "burst_rifle_equip"
+Fire_Ani = "burst_rifle_fire"
+Reload_Ani = "burst_rifle_reload"
+Dequip_Ani = "burst_rifle_unequip"
+Curr_Ammo = 20
+Reserve_Ammo = 120
+Mag = 20
+Max_Ammo = 300
+isAutomatic = false
