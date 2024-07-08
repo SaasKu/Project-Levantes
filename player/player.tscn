@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cfde4dumfslig"]
+[gd_scene load_steps=19 format=3 uid="uid://cfde4dumfslig"]
 
 [ext_resource type="Script" path="res://player/player_controller.gd" id="1_r47ex"]
 [ext_resource type="PackedScene" uid="uid://cgncprbjcjodd" path="res://Models/smg.gltf" id="2_fe7wy"]
 [ext_resource type="Script" path="res://player/Weapons_Manager.gd" id="2_wsucc"]
 [ext_resource type="Resource" uid="uid://bxeiwh54b4ilj" path="res://Models/Weapons/weapon resources/smgModel.tres" id="3_0poh5"]
+[ext_resource type="Resource" uid="uid://uir3oyykag5q" path="res://Models/Weapons/weapon resources/burst_rifle.tres" id="4_kb8oe"]
 [ext_resource type="PackedScene" uid="uid://b6twmcaboouo2" path="res://Models/Weapons/burst_rifle/burst_rifle.glb" id="5_qddgx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j86j8"]
@@ -620,8 +621,8 @@ cull_mask = 1047554
 
 [node name="Weapons_Manager" type="Node3D" parent="Head/Camera3D"]
 script = ExtResource("2_wsucc")
-_weapon_resources = Array[Resource("res://Models/Weapons/weapon_resource.gd")]([ExtResource("3_0poh5")])
-Starting_Weapons = Array[String](["smgModel"])
+_weapon_resources = Array[Resource("res://Models/Weapons/weapon_resource.gd")]([ExtResource("3_0poh5"), ExtResource("4_kb8oe")])
+Starting_Weapons = Array[String](["smgModel", "burst_rifle"])
 
 [node name="WeaponRig" type="Node3D" parent="Head/Camera3D/Weapons_Manager"]
 
