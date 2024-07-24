@@ -92,19 +92,24 @@ func fire_Wep():
 			var burst_amount = Current_Weapon.Burst_Count
 			if cur_mag_ammo != 0 and cur_mag_ammo >= burst_amount:
 				var cur_anim = Animation_Player.get_current_animation()
-				if cur_anim != Current_Weapon.Dequip_Ani and cur_anim != Current_Weapon.Equip_Ani:
+				if cur_anim != Current_Weapon.Dequip_Ani and cur_anim != Current_Weapon.Equip_Ani and cur_anim != Current_Weapon.Reload_Ani:
 					for i in range(0, burst_amount):
 						if i != 0:
 							await Animation_Player.animation_finished
 						Animation_Player.play(Current_Weapon.Fire_Ani)
-						print(i)
+						Current_Weapon.Curr_Mag_Ammo -= 1
+						print(Current_Weapon.Curr_Mag_Ammo)
 						
 			elif cur_mag_ammo != 0:
 				for i in range(0, cur_mag_ammo):
+					if i != 0:
+						await Animation_Player.animation_finished
 					Animation_Player.play(Current_Weapon.Fire_Ani)
-			elif Current_Weapon.Reserve_Ammo != 0:
+					Current_Weapon.Curr_Mag_Ammo -= 1
+			elif Current_Weapon.Reserve_Ammo != 0 and Current_Weapon.Curr_Mag_Ammo == 0:
 				reload()
-			print("burstfire")
+
+			#print("burstfire")
 		"auto":
 			if Current_Weapon.Curr_Mag_Ammo != 0:
 				var cur_anim = Animation_Player.get_current_animation()
@@ -116,13 +121,28 @@ func reload():
 	var r_ammo = Current_Weapon.Reserve_Ammo
 	var c_mag_ammo = Current_Weapon.Curr_Mag_Ammo
 	var max_mag_ammo = Current_Weapon.Max_Mag_Capacity
-	if c_mag_ammo != 0 and c_mag_ammo != max_mag_ammo:
+	
+	var refill_amount = max_mag_ammo - c_mag_ammo
+	if c_mag_ammo == max_mag_ammo:
+		print("nuh uh")
+	elif r_ammo >= refill_amount:
 		var cur_anim = Animation_Player.get_current_animation()
 		if ((cur_anim != Current_Weapon.Dequip_Ani) 
 			and (cur_anim != Current_Weapon.Equip_Ani)
 			and cur_anim != Current_Weapon.Reload_Ani
 		):
 			Animation_Player.play(Current_Weapon.Reload_Ani)
+			Current_Weapon.Curr_Mag_Ammo += refill_amount
+			Current_Weapon.Reserve_Ammo -= refill_amount
+	else:
+		var cur_anim = Animation_Player.get_current_animation()
+		if ((cur_anim != Current_Weapon.Dequip_Ani) 
+			and (cur_anim != Current_Weapon.Equip_Ani)
+			and cur_anim != Current_Weapon.Reload_Ani
+		):
+			Animation_Player.play(Current_Weapon.Reload_Ani)
+			Current_Weapon.Curr_Mag_Ammo += refill_amount
+			Current_Weapon.Reserve_Ammo = 0
 		
 	print("reloading")
 
