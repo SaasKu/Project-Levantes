@@ -92,16 +92,12 @@ func fire_Wep():
 			var burst_amount = Current_Weapon.Burst_Count
 			if cur_mag_ammo != 0 and cur_mag_ammo >= burst_amount:
 				var cur_anim = Animation_Player.get_current_animation()
-				if (cur_anim != Current_Weapon.Dequip_Ani) and (cur_anim != Current_Weapon.Equip_Ani):
+				if cur_anim != Current_Weapon.Dequip_Ani and cur_anim != Current_Weapon.Equip_Ani:
 					for i in range(0, burst_amount):
-						'''
-							Burst Rifle code doesn't work
-							Need a way to figure out when the animation finishes so it can play again for all 
-							three rounds for the burst.
-						'''
-						if !Animation_Player.is_playing and Animation_Player.get_current_animation() == Current_Weapon.Fire_Ani:
-							Animation_Player.play(Current_Weapon.Fire_Ani)
-							print(i)
+						if i != 0:
+							await Animation_Player.animation_finished
+						Animation_Player.play(Current_Weapon.Fire_Ani)
+						print(i)
 						
 			elif cur_mag_ammo != 0:
 				for i in range(0, cur_mag_ammo):
