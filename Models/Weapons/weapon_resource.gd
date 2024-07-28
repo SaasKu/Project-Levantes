@@ -8,7 +8,7 @@ class_name Weapon_Resource
 @export var Fire_Ani: String
 @export var Reload_Ani: String
 @export var Dequip_Ani: String
-
+@export var Wait_Ani: String
 
 @export var Curr_Mag_Ammo: int
 @export var Reserve_Ammo: int
@@ -17,3 +17,6 @@ class_name Weapon_Resource
 
 @export var Fire_Mode: String
 @export var Burst_Count: int
+@export var Wait_Interval: float
+@export var Is_Waiting: bool
+@export var Is_Reloading: bool

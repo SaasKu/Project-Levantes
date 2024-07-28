@@ -88,18 +88,40 @@ func fire_Wep():
 				reload()
 			print("singlefire")
 		"burst":
+			var is_wait = Current_Weapon.Is_Waiting
+			var is_rel = Current_Weapon.Is_Reloading
 			var cur_mag_ammo = Current_Weapon.Curr_Mag_Ammo
 			var burst_amount = Current_Weapon.Burst_Count
+			
+
+			
 			if cur_mag_ammo != 0 and cur_mag_ammo >= burst_amount:
 				var cur_anim = Animation_Player.get_current_animation()
-				if cur_anim != Current_Weapon.Dequip_Ani and cur_anim != Current_Weapon.Equip_Ani and cur_anim != Current_Weapon.Reload_Ani:
+				var checks = (cur_anim != Current_Weapon.Dequip_Ani and cur_anim != Current_Weapon.Equip_Ani and cur_anim != Current_Weapon.Reload_Ani and !is_wait and !is_rel)
+				if !checks:
+					print("check failed")
+				elif checks:
 					for i in range(0, burst_amount):
-						if i != 0:
+						if Current_Weapon.Is_Reloading:
+							Current_Weapon.Is_Reloading = false
+						elif i == 2:
 							await Animation_Player.animation_finished
 						Animation_Player.play(Current_Weapon.Fire_Ani)
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						print(Current_Weapon.Curr_Mag_Ammo)
+						if i == burst_amount-1:
+							await Animation_Player.animation_finished
+							print()
+					
+					Current_Weapon.Is_Waiting = true
+					Animation_Player.play(Current_Weapon.Wait_Ani)
+					await Animation_Player.animation_finished
+					Current_Weapon.Is_Waiting = false
+
+					
+					
 						
+					
 			elif cur_mag_ammo != 0:
 				for i in range(0, cur_mag_ammo):
 					if i != 0:
@@ -108,6 +130,7 @@ func fire_Wep():
 					Current_Weapon.Curr_Mag_Ammo -= 1
 			elif Current_Weapon.Reserve_Ammo != 0 and Current_Weapon.Curr_Mag_Ammo == 0:
 				reload()
+
 
 			#print("burstfire")
 		"auto":
@@ -134,6 +157,7 @@ func reload():
 			Animation_Player.play(Current_Weapon.Reload_Ani)
 			Current_Weapon.Curr_Mag_Ammo += refill_amount
 			Current_Weapon.Reserve_Ammo -= refill_amount
+			print(Current_Weapon.Reserve_Ammo)
 	else:
 		var cur_anim = Animation_Player.get_current_animation()
 		if ((cur_anim != Current_Weapon.Dequip_Ani) 
@@ -143,6 +167,7 @@ func reload():
 			Animation_Player.play(Current_Weapon.Reload_Ani)
 			Current_Weapon.Curr_Mag_Ammo += refill_amount
 			Current_Weapon.Reserve_Ammo = 0
+			print(Current_Weapon.Reserve_Ammo)
 		
 	print("reloading")
 
