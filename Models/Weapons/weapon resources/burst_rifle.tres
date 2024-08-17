@@ -19,3 +19,6 @@ Burst_Count = 3
 Wait_Interval = 0.5
 Is_Waiting = false
 Is_Reloading = false
+Type = 1
+Projectile_Range = 0
+dmg = 1

@@ -20,3 +20,7 @@ class_name Weapon_Resource
 @export var Wait_Interval: float
 @export var Is_Waiting: bool
 @export var Is_Reloading: bool
+
+@export_flags("HitScan","Projectile") var Type
+@export var Projectile_Range: int
+@export var dmg: int

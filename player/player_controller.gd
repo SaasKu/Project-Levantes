@@ -43,16 +43,16 @@ func _unhandled_input(event):
 			%Camera3D.rotate_x(-event.relative.y * look_sens)
 			%Camera3D.rotation.x = clamp(%Camera3D.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 
-func _headbob_effect(delta):
-	if self.velocity.length() > 0:
-		headbob_time += delta * self.velocity.length()
-		var sway_x = cos(headbob_time * HEADBOB_FREQ * 0.5) * HEADBOB_SWAY_AMOUNT
-		var sway_y = sin(headbob_time * HEADBOB_FREQ) * HEADBOB_SWAY_AMOUNT
+# func _headbob_effect(delta):
+# 	if self.velocity.length() > 0:
+# 		headbob_time += delta * self.velocity.length()
+# 		var sway_x = cos(headbob_time * HEADBOB_FREQ * 0.5) * HEADBOB_SWAY_AMOUNT
+# 		var sway_y = sin(headbob_time * HEADBOB_FREQ) * HEADBOB_SWAY_AMOUNT
 		
-		%Camera3D.position += Vector3(sway_x, sway_y, 0)
+# 		%Camera3D.position += Vector3(sway_x, sway_y, 0)
 
-		#var gun_bob_offset = Vector3(0, sin(headbob_time * gun_bobbing_frequency) * gun_bobbing_amplitude, 0)
-		#gun.position += gun_bob_offset
+# 		#var gun_bob_offset = Vector3(0, sin(headbob_time * gun_bobbing_frequency) * gun_bobbing_amplitude, 0)
+# 		#gun.position += gun_bob_offset
 	
 func _process(delta):
 	gunCam.global_transform = mainCam.global_transform
@@ -74,7 +74,7 @@ func _handle_air_physics(delta) -> void:
 func _handle_ground_physics(delta) -> void:
 	self.velocity.x = wish_dir.x * get_move_speed()
 	self.velocity.z = wish_dir.z * get_move_speed()
-	_headbob_effect(delta)
+	# _headbob_effect(delta)
 	
 func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down").normalized()
