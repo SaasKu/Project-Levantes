@@ -7,8 +7,10 @@
 
 extends Node3D
 
+
 @onready var Animation_Player = get_node("WeaponRig/AnimationPlayer")
-@onready var tracer_origin = get_node("WeaponRig/tracer_origin")
+
+
 var Current_Weapon = null
 
 var Weapon_Stack = [] #Should be 2 weapons at most
@@ -18,6 +20,8 @@ var Weapon_Indicator: int = 0
 var Other_Weapon: String
 
 var Weapon_List = {}
+
+var raycast_test = preload("res://Scenes/Assets/raycast_test.tscn")
 
 @export var _weapon_resources: Array[Weapon_Resource]
 
@@ -34,7 +38,6 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("Weapon_Switch"):
 		Weapon_Indicator = !Weapon_Indicator
-		#print(Weapon_Indicator)
 		exit(Weapon_Stack[Weapon_Indicator])
 	elif event.is_action_pressed("Shoot"):
 		fire_Wep()
@@ -42,7 +45,6 @@ func _input(event):
 		reload()
 
 func Initialize(_Starting_Weaps: Array):
-	#Creates the dictionary that refers to our guns
 	for weapon in _weapon_resources:
 		Weapon_List[weapon.Wep_Name] = weapon
 	
@@ -58,9 +60,6 @@ func enter():
 	
 	
 func exit(_next_weapon: String):
-	#print("exit function called")
-	#print(len(Weapon_Stack))
-	#In order to change weapons first call exit
 	if _next_weapon != Current_Weapon.Wep_Name:
 		if Animation_Player.get_current_animation() != Current_Weapon.Dequip_Ani:
 			Animation_Player.play(Current_Weapon.Dequip_Ani)
@@ -76,24 +75,16 @@ func switch_Wep(weapon_name: String):
 	Other_Weapon = ""
 	enter()
 		
-# TODO: Remove print statements 
 func fire_Wep():
 	var f_mode = Current_Weapon.Fire_Mode
-	#Acts as switch statement
 	match f_mode:
 		"single" :
 			var cur_anim = Animation_Player.get_current_animation()
 			var anim_check = (cur_anim != Current_Weapon.Dequip_Ani) and (cur_anim != Current_Weapon.Equip_Ani)
 			if Current_Weapon.Curr_Mag_Ammo != 0 and anim_check:
+				_raycast()
 				Animation_Player.play(Current_Weapon.Fire_Ani)
-				# match Current_Weapon.Type:
-				# 	NULL:
-				# 		print("Error: Projectile type not chosen")
-				# 	HITSCAN:
-				# 		hit_scan_collision(c
-				# 	PROJECTILE:
-				# 		pass
-				# print("firing | singlefire")
+				Current_Weapon.Curr_Mag_Ammo -= 1
 			elif Current_Weapon.Reserve_Ammo != 0 and anim_check:
 				reload()
 			# print("singlefire")
@@ -109,27 +100,20 @@ func fire_Wep():
 			if ammo_checks:
 				var checks = (cur_anim != Current_Weapon.Dequip_Ani and cur_anim != Current_Weapon.Equip_Ani and cur_anim != Current_Weapon.Reload_Ani and !is_wait and !is_rel)
 				if !checks:
-					print("check failed")
+					pass
 				elif checks:
-					for i in range(0, burst_amount):
-						var camera_collision = get_camera_collision()
+					for i in range(burst_amount):
 						if Current_Weapon.Is_Reloading:
 							Current_Weapon.Is_Reloading = false
-						elif i == 2:
-							await Animation_Player.animation_finished
+						#elif i == 2:
+							#await Animation_Player.animation_finished
 						Animation_Player.play(Current_Weapon.Fire_Ani)
-						match Current_Weapon.Type:
-							NULL:
-								print("Error: Projectile type not chosen")
-							HITSCAN:
-								hit_scan_collision(camera_collision)
-							PROJECTILE:
-								pass
+						_raycast()
+						print(str(Current_Weapon.Curr_Mag_Ammo) + "\n")
 						Current_Weapon.Curr_Mag_Ammo -= 1
-						print(Current_Weapon.Curr_Mag_Ammo)
-						if i == burst_amount-1:
-							await Animation_Player.animation_finished
-							print()
+						await Animation_Player.animation_finished
+						#if i == burst_amount-1:
+							#await Animation_Player.animation_finished
 					
 					Current_Weapon.Is_Waiting = true
 					Animation_Player.play(Current_Weapon.Wait_Ani)
@@ -148,35 +132,22 @@ func fire_Wep():
 					Current_Weapon.Curr_Mag_Ammo -= 1
 			elif Current_Weapon.Reserve_Ammo != 0 and Current_Weapon.Curr_Mag_Ammo == 0:
 				reload()
-
-
-			#print("burstfire")
 		"auto":
 			if Current_Weapon.Curr_Mag_Ammo != 0:
 				var cur_anim = Animation_Player.get_current_animation()
 				var anim_checks = (cur_anim != Current_Weapon.Dequip_Ani and cur_anim != Current_Weapon.Equip_Ani)
 				if anim_checks and Current_Weapon.Curr_Mag_Ammo != 0:
-					# Animation_Player.play(Current_Weapon.Fire_Ani)
-					# await Animation_Player.animation_finished
 					while Input.is_action_pressed("Shoot") and Current_Weapon.Curr_Mag_Ammo != 0 and Animation_Player.get_current_animation() != Current_Weapon.Reload_Ani:
-						var camera_collision = get_camera_collision()
 						Animation_Player.play(Current_Weapon.Fire_Ani)
-						# print(Current_Weapon.Curr_Mag_Ammo)
+						_raycast()
 						Current_Weapon.Curr_Mag_Ammo -= 1
-						match Current_Weapon.Type:
-							NULL:
-								print("Error: Projectile type not chosen")
-							HITSCAN:
-								hit_scan_collision(camera_collision)
-							PROJECTILE:
-								pass
 						await Animation_Player.animation_finished
 						if Current_Weapon.Reserve_Ammo != 0 and Current_Weapon.Curr_Mag_Ammo == 0:
 							reload()
 				elif anim_checks and Current_Weapon.Curr_Mag_Ammo == 0 and Current_Weapon.Reserve_Ammo != 0:
 					reload()
 
-			# print("auto")
+
 	
 func reload():
 	var r_ammo = Current_Weapon.Reserve_Ammo
@@ -186,7 +157,6 @@ func reload():
 	var refill_amount = max_mag_ammo - c_mag_ammo
 	if c_mag_ammo == max_mag_ammo:
 		pass
-		# print("nuh uh")
 	elif r_ammo >= refill_amount:
 		var cur_anim = Animation_Player.get_current_animation()
 		if ((cur_anim != Current_Weapon.Dequip_Ani) 
@@ -196,7 +166,6 @@ func reload():
 			Animation_Player.play(Current_Weapon.Reload_Ani)
 			Current_Weapon.Curr_Mag_Ammo += refill_amount
 			Current_Weapon.Reserve_Ammo -= refill_amount
-			# print(Current_Weapon.Reserve_Ammo)
 	else:
 		var cur_anim = Animation_Player.get_current_animation()
 		if ((cur_anim != Current_Weapon.Dequip_Ani) 
@@ -206,43 +175,28 @@ func reload():
 			Animation_Player.play(Current_Weapon.Reload_Ani)
 			Current_Weapon.Curr_Mag_Ammo += refill_amount
 			Current_Weapon.Reserve_Ammo = 0
-			# print(Current_Weapon.Reserve_Ammo)
-		
-	# print("reloading")
-
-
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == Current_Weapon.Dequip_Ani:
 		switch_Wep(Other_Weapon)
 
-func get_camera_collision()->Vector3:
-	var camera = get_viewport().get_camera_3d()
-	var viewport = get_viewport().get_size()
+func _raycast() -> void:
+	var camera = %Camera3D
+	var space_state = camera.get_world_3d().direct_space_state
+	var screen_center = get_viewport().size / 2
+	var origin = camera.project_ray_origin(screen_center)
+	var endpoint = origin + camera.project_ray_normal(screen_center) * Current_Weapon.Projectile_Range
+	var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+	query.collide_with_bodies = true
+	query.collide_with_areas = true
+	var result = space_state.intersect_ray(query)
+	if result:
+		_test_raycast(result.get("position"))
 
-	var raycast_origin = camera.project_ray_origin(viewport/2)
-	var raycast_end = raycast_origin + camera.project_ray_normal(viewport/2)*Current_Weapon.Projectile_Range
-
-	var new_intersection = PhysicsRayQueryParameters3D.create(raycast_origin, raycast_end)
-	var intersection = get_world_3d().direct_space_state.intersect_ray(new_intersection)
-
-	if not intersection.is_empty():
-		var collision_point = intersection.position
-		return collision_point
-	else:
-		return raycast_end
-
-func hit_scan_collision(collision_point):
-	var bullet_direction = (collision_point - tracer_origin.get_global_transform().origin).normalized()
-	var new_intersection = PhysicsRayQueryParameters3D.create(tracer_origin.get_global_transform().origin,collision_point+bullet_direction*2)
-
-	var bullet_collision = get_world_3d().direct_space_state.intersect_ray(new_intersection)
-
-	if bullet_collision:
-		print("Showing tracer!")
-		hit_scan_damage(bullet_collision.collider)
+func _test_raycast(position: Vector3) -> void:
+	var instance = raycast_test.instantiate()
+	get_tree().root.add_child(instance)
+	instance.global_position = position
+	await get_tree().create_timer(3).timeout
+	instance.queue_free()
 	
-func hit_scan_damage(Collider):
-	if Collider.is_in_group("Target") and Collider.has_method("Hit_Successful"):
-		print("HITTTTT")
-		Collider.Hit_Successful(Current_Weapon.dmg)

@@ -157,39 +157,6 @@ tracks/11/keys = {
 "update": 0,
 "values": [Vector3(1.5708, 2.27374e-13, 0)]
 }
-tracks/12/type = "bezier"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/tracer_origin:position:x")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/13/type = "bezier"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/tracer_origin:position:y")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
-tracks/14/type = "bezier"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/tracer_origin:position:z")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
-"handle_modes": PackedInt32Array(0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0)
-}
 
 [sub_resource type="Animation" id="Animation_lrgu0"]
 resource_name = "burst_rifle_equip"
@@ -230,39 +197,6 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/tracer_origin:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0.380028, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/tracer_origin:position:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.152672, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/tracer_origin:position:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -1.61372, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.7)
 }
 
 [sub_resource type="Animation" id="Animation_7lh06"]
@@ -780,9 +714,6 @@ transform = Transform3D(1, 2.48108e-13, -8.98149e-19, 0, -3.9501e-06, -1.09119, 
 
 [node name="Cylinder_004" parent="Head/Camera3D/Weapons_Manager/WeaponRig/burst_rifle" index="5"]
 transform = Transform3D(1, 6.82121e-13, 0, 0, 0, -1.09119, -4.54747e-13, 1.09119, 0, 8.8872, 0.759834, 25.3597)
-
-[node name="tracer_origin" type="Marker3D" parent="Head/Camera3D/Weapons_Manager/WeaponRig"]
-unique_name_in_owner = true
 
 [connection signal="animation_finished" from="Head/Camera3D/Weapons_Manager/WeaponRig/AnimationPlayer" to="Head/Camera3D/Weapons_Manager" method="_on_animation_player_animation_finished"]
 

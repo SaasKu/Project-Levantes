@@ -20,5 +20,5 @@ Wait_Interval = 0.5
 Is_Waiting = false
 Is_Reloading = false
 Type = 1
-Projectile_Range = 0
+Projectile_Range = 100000.0
 dmg = 1

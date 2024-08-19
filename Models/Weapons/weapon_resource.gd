@@ -22,5 +22,5 @@ class_name Weapon_Resource
 @export var Is_Reloading: bool
 
 @export_flags("HitScan","Projectile") var Type
-@export var Projectile_Range: int
+@export var Projectile_Range: float
 @export var dmg: int

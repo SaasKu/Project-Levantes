@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwkxlbr2q60nh"]
+[gd_scene load_steps=14 format=3 uid="uid://dwkxlbr2q60nh"]
 
 [ext_resource type="PackedScene" uid="uid://cfde4dumfslig" path="res://player/player.tscn" id="1_n1d02"]
 [ext_resource type="ArrayMesh" uid="uid://bpv0vse6jqelh" path="res://Models/Weapons/smg/smg_obj_var.obj" id="2_m5if2"]
@@ -24,6 +24,8 @@ glow_enabled = true
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_058ee"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4y614"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbpsn"]
 albedo_color = Color(1, 0, 0, 1)
@@ -55,6 +57,12 @@ shape = SubResource("ConcavePolygonShape3D_talri")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(3.285, 0, 0, 0, 3.285, 0, 0, 0, 3.285, 0, 1.47782, -7.27788)
 mesh = SubResource("BoxMesh_058ee")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_4y614")
 
 [node name="SmgObjVar" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -25.032, 8.02512, 21.9947)

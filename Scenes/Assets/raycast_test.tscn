@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://1mp3bevnppfh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c08dp"]
+shading_mode = 0
+albedo_color = Color(1, 0.580392, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u5fvk"]
+material = SubResource("StandardMaterial3D_c08dp")
+radius = 0.1
+height = 0.2
+
+[node name="BulletHole" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_u5fvk")
