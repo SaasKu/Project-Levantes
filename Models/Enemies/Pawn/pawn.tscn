@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsnhtayj8wct3"]
+
+[ext_resource type="PackedScene" uid="uid://bky4a3xpyatlm" path="res://Models/Enemies/Pawn/pawn.glb" id="1_4kb2b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ev5up"]
+albedo_color = Color(0.207843, 0.207843, 0.207843, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_df1qd"]
+blend_mode = 1
+albedo_color = Color(11.834, 1.183, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_00ua3"]
+albedo_color = Color(0.592, 0, 0.034, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1k13d"]
+albedo_color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="pawn" instance=ExtResource("1_4kb2b")]
+
+[node name="Head" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ev5up")
+
+[node name="Cylinder_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ev5up")
+
+[node name="Flame" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_df1qd")
+
+[node name="RightForearm" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ev5up")
+
+[node name="Righthand" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ev5up")
+
+[node name="Face" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_00ua3")
+
+[node name="Mohawk" parent="." index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_00ua3")
+
+[node name="RightForearm_001" parent="." index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ev5up")
+
+[node name="Righthand_001" parent="." index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ev5up")
+
+[node name="RightWrist_002" parent="." index="9"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ev5up")
+
+[node name="BackPack" parent="." index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1k13d")

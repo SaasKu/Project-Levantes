@@ -12,7 +12,7 @@ func _process(delta):
 	pass
 
 func _draw():
-	draw_circle(Vector2(0,0),crosshair_radius, crosshair_color)
+	draw_circle(Vector2(20,20),crosshair_radius, crosshair_color)
 
 #func initiate():
 	#
