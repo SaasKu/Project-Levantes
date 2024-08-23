@@ -1,0 +1,129 @@
+[gd_scene load_steps=3 format=3 uid="uid://dssfcs6qgya2v"]
+
+[ext_resource type="FontFile" uid="uid://dn1ewphq0hlak" path="res://UI/Fonts/TitilliumWeb-SemiBold.ttf" id="1_xg4as"]
+[ext_resource type="Script" path="res://UI/hud_scripts/hud_updates.gd" id="2_bm6h5"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -215.0
+offset_bottom = 74.0
+grow_horizontal = 0
+color = Color(0, 0.807843, 0.721569, 0.592157)
+
+[node name="Wep1" type="Label" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 17.0
+offset_top = 5.0
+offset_right = 112.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("1_xg4as")
+theme_override_font_sizes/font_size = 20
+text = "Weapon1:
+"
+
+[node name="Mag1" type="Label" parent="ColorRect/Wep1"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 99.0
+offset_top = 1.0
+offset_right = 134.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("1_xg4as")
+theme_override_font_sizes/font_size = 20
+text = "000"
+
+[node name="Div1" type="Label" parent="ColorRect/Wep1"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 138.0
+offset_top = 1.0
+offset_right = 173.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("1_xg4as")
+theme_override_font_sizes/font_size = 20
+text = "/
+"
+
+[node name="Reserve1" type="Label" parent="ColorRect/Wep1"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 152.0
+offset_top = 1.0
+offset_right = 187.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("1_xg4as")
+theme_override_font_sizes/font_size = 20
+text = "000"
+
+[node name="Wep2" type="Label" parent="ColorRect"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 36.0
+offset_right = 111.0
+offset_bottom = 67.0
+theme_override_fonts/font = ExtResource("1_xg4as")
+theme_override_font_sizes/font_size = 20
+text = "Weapon2:
+"
+
+[node name="Mag2" type="Label" parent="ColorRect/Wep2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 98.0
+offset_top = 1.0
+offset_right = 133.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("1_xg4as")
+theme_override_font_sizes/font_size = 20
+text = "000"
+
+[node name="Div2" type="Label" parent="ColorRect/Wep2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 137.0
+offset_top = 1.0
+offset_right = 172.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("1_xg4as")
+theme_override_font_sizes/font_size = 20
+text = "/
+"
+
+[node name="Reserve2" type="Label" parent="ColorRect/Wep2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 151.0
+offset_top = 1.0
+offset_right = 186.0
+offset_bottom = 32.0
+theme_override_fonts/font = ExtResource("1_xg4as")
+theme_override_font_sizes/font_size = 20
+text = "000"
+
+[node name="Reticle" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_bm6h5")

@@ -191,6 +191,7 @@ func _raycast() -> void:
 	query.collide_with_areas = true
 	var result = space_state.intersect_ray(query)
 	if result:
+		print(screen_center)
 		_test_raycast(result.get("position"))
 
 func _test_raycast(position: Vector3) -> void:
@@ -200,3 +201,5 @@ func _test_raycast(position: Vector3) -> void:
 	await get_tree().create_timer(3).timeout
 	instance.queue_free()
 	
+#func update_hud():
+	#
