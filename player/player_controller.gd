@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 @export var look_sens: float = 0.006
 @export var jump_velocity := 6.0
 @export var bhop_on := true

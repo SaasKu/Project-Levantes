@@ -9,5 +9,5 @@ material = SubResource("StandardMaterial3D_c08dp")
 radius = 0.1
 height = 0.2
 
-[node name="BulletHole" type="MeshInstance3D"]
+[node name="BulletHole" type="MeshInstance3D" groups=["boolet"]]
 mesh = SubResource("SphereMesh_u5fvk")

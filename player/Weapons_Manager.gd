@@ -198,7 +198,7 @@ func _test_raycast(position: Vector3) -> void:
 	var instance = raycast_test.instantiate()
 	get_tree().root.add_child(instance)
 	instance.global_position = position
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(1).timeout
 	instance.queue_free()
 	
 #func update_hud():
