@@ -36,13 +36,18 @@ func _ready():
 	Don't handle checks in this function
 '''
 func _input(event):
+		
 	if event.is_action_pressed("Weapon_Switch"):
-		Weapon_Indicator = !Weapon_Indicator
-		exit(Weapon_Stack[Weapon_Indicator])
-	elif event.is_action_pressed("Shoot"):
+		if Weapon_Stack.size() > 1:
+			Weapon_Indicator = !Weapon_Indicator
+			exit(Weapon_Stack[Weapon_Indicator])
+	if event.is_action_pressed("Shoot"):
 		fire_Wep()
-	elif event.is_action_pressed("Reload"):
+	if event.is_action_pressed("Reload"):
 		reload()
+	if event.is_action_pressed("Drop_Weapon"):
+		drop_weapon(Current_Weapon.Wep_Name)
+		
 
 func Initialize(_Starting_Weaps: Array):
 	for weapon in _weapon_resources:
@@ -60,7 +65,7 @@ func enter():
 	
 	
 func exit(_next_weapon: String):
-	if _next_weapon != Current_Weapon.Wep_Name:
+	if Weapon_Stack.size() > 1 and _next_weapon != Current_Weapon.Wep_Name:
 		if Animation_Player.get_current_animation() != Current_Weapon.Dequip_Ani:
 			Animation_Player.play(Current_Weapon.Dequip_Ani)
 			Other_Weapon = _next_weapon
@@ -71,9 +76,10 @@ func exit(_next_weapon: String):
 	The checks are handled in exits function
 '''
 func switch_Wep(weapon_name: String):
-	Current_Weapon = Weapon_List[weapon_name]
-	Other_Weapon = ""
-	enter()
+	if Weapon_Stack.size() > 1:
+		Current_Weapon = Weapon_List[weapon_name]
+		Other_Weapon = ""
+		enter()
 		
 func fire_Wep():
 	var f_mode = Current_Weapon.Fire_Mode
@@ -201,5 +207,11 @@ func _test_raycast(position: Vector3) -> void:
 	await get_tree().create_timer(1).timeout
 	instance.queue_free()
 	
+func drop_weapon(_name: String):
+	var wep_ref = Weapon_Stack.find(_name, 0)
+	if wep_ref != -1:
+		Weapon_Stack.pop_at(wep_ref)
+		
+		
 #func update_hud():
 	#

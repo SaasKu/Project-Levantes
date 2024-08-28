@@ -392,7 +392,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8fvf2")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0n263"]
-radius = 0.181508
+radius = 0.506565
 
 [node name="TestEnemy" type="Node3D"]
 script = ExtResource("1_xtenq")
@@ -496,7 +496,7 @@ skeleton = NodePath("")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
 shape = SubResource("SphereShape3D_0n263")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
