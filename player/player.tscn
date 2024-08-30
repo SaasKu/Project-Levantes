@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cfde4dumfslig"]
+[gd_scene load_steps=27 format=3 uid="uid://cfde4dumfslig"]
 
 [ext_resource type="Script" path="res://player/player_controller.gd" id="1_r47ex"]
 [ext_resource type="PackedScene" uid="uid://cgncprbjcjodd" path="res://Models/smg.gltf" id="2_fe7wy"]
@@ -638,14 +638,17 @@ _data = {
 }
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gjjp"]
-albedo_color = Color(0, 1.5, 4.012, 1)
+albedo_color = Color(0, 4, 8, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awmrn"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0, 0.121569, 0.121569, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7ibg"]
-albedo_color = Color(0.533333, 0.533333, 0.533333, 1)
+albedo_color = Color(0.427451, 0.6, 0.701961, 1)
 metallic = 1.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v3v36"]
+size = Vector3(2.92481, 2.45361, 3.20447)
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_r47ex")
@@ -704,7 +707,7 @@ cull_mask = 1047554
 [node name="Weapons_Manager" type="Node3D" parent="Head/Camera3D"]
 script = ExtResource("2_wsucc")
 _weapon_resources = Array[Resource("res://Models/Weapons/weapon_resource.gd")]([ExtResource("3_0poh5"), ExtResource("4_kb8oe")])
-Starting_Weapons = Array[String](["smgModel", "burst_rifle"])
+Starting_Weapons = Array[String](["smgModel"])
 
 [node name="WeaponRig" type="Node3D" parent="Head/Camera3D/Weapons_Manager"]
 
@@ -758,7 +761,16 @@ material_override = SubResource("StandardMaterial3D_awmrn")
 transform = Transform3D(1, 6.82121e-13, 0, 0, 0, -1.09119, -4.54747e-13, 1.09119, 0, 8.8872, 0.759834, 25.3597)
 material_override = SubResource("StandardMaterial3D_g7ibg")
 
+[node name="pickup_detection" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pickup_detection"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022, 1.015, 0)
+shape = SubResource("BoxShape3D_v3v36")
+
 [connection signal="animation_finished" from="Head/Camera3D/Weapons_Manager/WeaponRig/AnimationPlayer" to="Head/Camera3D/Weapons_Manager" method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="pickup_detection" to="Head/Camera3D/Weapons_Manager" method="_on_pickup_detection_body_entered"]
 
 [editable path="Head/Camera3D/Weapons_Manager/WeaponRig/smgModel"]
 [editable path="Head/Camera3D/Weapons_Manager/WeaponRig/burst_rifle"]

@@ -398,11 +398,11 @@ radius = 0.506565
 script = ExtResource("1_xtenq")
 
 [node name="f_t_y" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.326871, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.08445, 0)
 script = ExtResource("2_l1paq")
 
 [node name="f_t_x" type="Node3D" parent="f_t_y"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.95305e-08, 0.0398043, -0.0404378)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.95305e-08, 1.45112, -0.0404378)
 script = ExtResource("2_l1paq")
 
 [node name="f_t_x_model_group" type="Node3D" parent="f_t_y/f_t_x"]
@@ -467,7 +467,7 @@ skeleton = NodePath("")
 transform = Transform3D(-4.37114e-09, 0.1, 1.94118e-23, -0.1, -4.37114e-09, 4.44089e-16, 4.44089e-16, 0, 0.1, 0.702983, -0.0542269, -1.52156)
 
 [node name="f_t_y_model_group" type="Node3D" parent="f_t_y"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.38834, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0229789, 0)
 
 [node name="Cylinder_002" type="MeshInstance3D" parent="f_t_y/f_t_y_model_group"]
 transform = Transform3D(0.0574783, 0, 0.0697937, 0, 0.0904153, 0, -0.0697937, 0, 0.0574783, 1.00461e-10, 0.67669, 0.00229833)

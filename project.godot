@@ -79,6 +79,13 @@ Drop_Weapon={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="World"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Objects"
+3d_physics/layer_4="Weapons"
+
 [physics]
 
 3d/default_gravity=12.0

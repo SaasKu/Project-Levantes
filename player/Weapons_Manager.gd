@@ -215,3 +215,18 @@ func drop_weapon(_name: String):
 		
 #func update_hud():
 	#
+
+
+func _on_pickup_detection_body_entered(body):
+	var weapon_in_stack = Weapon_Stack.find(body.weapon_name, 0)
+	
+	if weapon_in_stack == -1:
+		Weapon_Stack.push_front(body.weapon_name)
+		
+		Weapon_List[body.weapon_name].Curr_Mag_Ammo = body.current_ammo
+		Weapon_List[body.weapon_name].Reserve_Ammo = body.reserve_ammo
+		
+		emit_signal("Update_Weapon_Stack", Weapon_Stack)
+		exit(body.weapon_name)
+		body.queue_free()
+	print(body.weapon_name)
