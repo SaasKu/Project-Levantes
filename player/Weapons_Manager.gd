@@ -23,6 +23,10 @@ var Weapon_List = {}
 
 var raycast_test = preload("res://Scenes/Assets/raycast_test.tscn")
 
+var in_pickup_range = false
+
+var wp
+
 @export var _weapon_resources: Array[Weapon_Resource]
 
 @export var Starting_Weapons: Array[String]
@@ -47,6 +51,33 @@ func _input(event):
 		reload()
 	if event.is_action_pressed("Drop_Weapon"):
 		drop_weapon(Current_Weapon.Wep_Name)
+	if in_pickup_range and Input.is_action_pressed("pick_up_weapon"):
+		if Weapon_Stack.size() == 1:
+			var weapon_in_stack = Weapon_Stack.find(wp.weapon_name, 0)
+			if weapon_in_stack == -1:
+				Weapon_Stack.insert(Weapon_Indicator,wp.weapon_name)
+				Weapon_Indicator = !Weapon_Indicator
+				Weapon_List[wp.weapon_name].Curr_Mag_Ammo = wp.current_ammo
+				Weapon_List[wp.weapon_name].Reserve_Ammo = wp.reserve_ammo
+				
+				emit_signal("Update_Weapon_Stack", Weapon_Stack)
+				exit(wp.weapon_name)
+				wp.queue_free()
+			print(wp.weapon_name)
+		elif Weapon_Stack.size() == 2:
+			var weapon_in_stack = Weapon_Stack.find(wp.weapon_name, 0)
+			if weapon_in_stack == -1:
+				Weapon_Stack.remove_at(Weapon_Stack.find(Current_Weapon.weapon_name, 0))
+				Weapon_Stack.insert(Weapon_Indicator,wp.weapon_name)
+				Weapon_Indicator = !Weapon_Indicator
+				Weapon_List[wp.weapon_name].Curr_Mag_Ammo = wp.current_ammo
+				Weapon_List[wp.weapon_name].Reserve_Ammo = wp.reserve_ammo
+				
+				emit_signal("Update_Weapon_Stack", Weapon_Stack)
+				exit(wp.weapon_name)
+				wp.queue_free()
+			print(wp.weapon_name)
+			
 		
 
 func Initialize(_Starting_Weaps: Array):
@@ -76,10 +107,10 @@ func exit(_next_weapon: String):
 	The checks are handled in exits function
 '''
 func switch_Wep(weapon_name: String):
-	if Weapon_Stack.size() > 1:
-		Current_Weapon = Weapon_List[weapon_name]
-		Other_Weapon = ""
-		enter()
+	#if Weapon_Stack.size() > 1:
+	Current_Weapon = Weapon_List[weapon_name]
+	Other_Weapon = ""
+	enter()
 		
 func fire_Wep():
 	var f_mode = Current_Weapon.Fire_Mode
@@ -120,16 +151,10 @@ func fire_Wep():
 						await Animation_Player.animation_finished
 						#if i == burst_amount-1:
 							#await Animation_Player.animation_finished
-					
 					Current_Weapon.Is_Waiting = true
 					Animation_Player.play(Current_Weapon.Wait_Ani)
 					await Animation_Player.animation_finished
 					Current_Weapon.Is_Waiting = false
-
-					
-					
-						
-					
 			elif cur_mag_ammo != 0:
 				for i in range(0, cur_mag_ammo):
 					if i != 0:
@@ -207,10 +232,24 @@ func _test_raycast(position: Vector3) -> void:
 	await get_tree().create_timer(1).timeout
 	instance.queue_free()
 	
-func drop_weapon(_name: String):
-	var wep_ref = Weapon_Stack.find(_name, 0)
-	if wep_ref != -1:
-		Weapon_Stack.pop_at(wep_ref)
+func drop_weapon(w_name: String):
+	print("WORK IN PROGRESS")
+	#var wep_ref = Weapon_Stack.find(w_name, 0)
+	#if wep_ref != -1 and Weapon_Stack.size() > 1:
+		#Weapon_Stack.pop_at(wep_ref)
+		#emit_signal("Update_Weapon_Stack", Weapon_Stack)
+		#
+		#var Weapon_Dropped = Weapon_List[w_name].Weapon_Drop.instantiate()
+		#Weapon_Dropped.current_ammo = Weapon_List[w_name].Curr_Mag_Ammo
+		#Weapon_Dropped.reserve_ammo = Weapon_List[w_name].Reserve_Ammo
+		#
+		#Weapon_Dropped.set_global_transform($WeaponRig/tracer_spawn_point.get_global_transform())
+		#var World = get_tree().get_root().get_child(0)
+		#World.add_child(Weapon_Dropped)
+		#
+		#Current_Weapon = Weapon_List[Weapon_Stack[0]]
+		#enter()
+
 		
 		
 #func update_hud():
@@ -218,15 +257,10 @@ func drop_weapon(_name: String):
 
 
 func _on_pickup_detection_body_entered(body):
-	var weapon_in_stack = Weapon_Stack.find(body.weapon_name, 0)
-	
-	if weapon_in_stack == -1:
-		Weapon_Stack.push_front(body.weapon_name)
-		
-		Weapon_List[body.weapon_name].Curr_Mag_Ammo = body.current_ammo
-		Weapon_List[body.weapon_name].Reserve_Ammo = body.reserve_ammo
-		
-		emit_signal("Update_Weapon_Stack", Weapon_Stack)
-		exit(body.weapon_name)
-		body.queue_free()
-	print(body.weapon_name)
+	wp = body
+	in_pickup_range = true
+
+
+func _on_pickup_detection_body_exited(body):
+	wp = null
+	in_pickup_range = false

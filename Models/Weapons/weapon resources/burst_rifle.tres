@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://uir3oyykag5q"]
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=3 format=3 uid="uid://uir3oyykag5q"]
 
+[ext_resource type="PackedScene" uid="uid://dycrppyyvnj7b" path="res://Models/Weapons/spawnable_weapons/sp_burst_rifle.tscn" id="1_xyxa7"]
 [ext_resource type="Script" path="res://Models/Weapons/weapon_resource.gd" id="1_yf1dw"]
 
 [resource]
@@ -22,3 +23,4 @@ Is_Reloading = false
 Type = 1
 Projectile_Range = 100000.0
 dmg = 1
+Weapon_Drop = ExtResource("1_xyxa7")
