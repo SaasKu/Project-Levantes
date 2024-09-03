@@ -167,14 +167,12 @@ transform = Transform3D(0, 1, 0, 0, 0, -12.09, -12.09, 0, 0, 0, 0, 0)
 
 [node name="Mag" type="MeshInstance3D" parent="burst_rifle"]
 transform = Transform3D(-1, 9.53952e-08, 0, -8.74228e-08, -1.09119, 0, 0, 0, 1.09119, 8.8872, -9.15356, 31.2051)
-layers = 2
 material_override = SubResource("StandardMaterial3D_8gjjp")
 mesh = SubResource("ArrayMesh_ups3w")
 skeleton = NodePath("")
 
 [node name="Cylinder_001" type="MeshInstance3D" parent="burst_rifle"]
 transform = Transform3D(1, 0, 0, 0, 0, -1.09119, 0, 1.09119, 0, 1.59222, -3.40635, 23.3421)
-layers = 2
 material_override = SubResource("StandardMaterial3D_8gjjp")
 mesh = SubResource("ArrayMesh_kxxlb")
 skeleton = NodePath("")
@@ -184,14 +182,12 @@ transform = Transform3D(0, 1, 0, 0, 0, -12.09, -12.09, 0, 0, 0, 1.58483, 5.97358
 
 [node name="Cylinder_003" type="MeshInstance3D" parent="burst_rifle"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 8.8872, 9.75421, 11.8175)
-layers = 2
 material_override = SubResource("StandardMaterial3D_awmrn")
 mesh = SubResource("ArrayMesh_3jha7")
 skeleton = NodePath("")
 
 [node name="Cylinder_004" type="MeshInstance3D" parent="burst_rifle"]
 transform = Transform3D(1, 0, 0, 0, 0, -1.09119, 0, 1.09119, 0, 8.8872, 0.759836, 25.3597)
-layers = 2
 material_override = SubResource("StandardMaterial3D_g7ibg")
 mesh = SubResource("ArrayMesh_fa0sk")
 skeleton = NodePath("")

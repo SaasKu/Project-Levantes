@@ -4,6 +4,7 @@
 	Print statements reduce performance a lot
 '''
 
+#TODO: Remove debug button bs
 
 extends Node3D
 
@@ -12,6 +13,8 @@ extends Node3D
 
 
 var Current_Weapon = null
+
+var o_wep = null
 
 var Weapon_Stack = [] #Should be 2 weapons at most
 
@@ -40,6 +43,9 @@ func _ready():
 	Don't handle checks in this function
 '''
 func _input(event):
+	
+	if event.is_action_pressed("debug_button"):
+		hide_wep(Current_Weapon.Wep_Name)
 		
 	if event.is_action_pressed("Weapon_Switch"):
 		if Weapon_Stack.size() > 1:
@@ -49,8 +55,8 @@ func _input(event):
 		fire_Wep()
 	if event.is_action_pressed("Reload"):
 		reload()
-	if event.is_action_pressed("Drop_Weapon"):
-		drop_weapon(Current_Weapon.Wep_Name)
+	#if event.is_action_pressed("Drop_Weapon"):
+		#spawn_drop_weapon(Current_Weapon.Wep_Name)
 	if in_pickup_range and Input.is_action_pressed("pick_up_weapon"):
 		if Weapon_Stack.size() == 1:
 			var weapon_in_stack = Weapon_Stack.find(wp.weapon_name, 0)
@@ -67,7 +73,9 @@ func _input(event):
 		elif Weapon_Stack.size() == 2:
 			var weapon_in_stack = Weapon_Stack.find(wp.weapon_name, 0)
 			if weapon_in_stack == -1:
-				Weapon_Stack.remove_at(Weapon_Stack.find(Current_Weapon.weapon_name, 0))
+				spawn_drop_weapon(Current_Weapon.Wep_Name)
+				Weapon_Stack.remove_at(Weapon_Stack.find(Current_Weapon.Wep_Name, 0))
+				hide_wep(Current_Weapon.Wep_Name)
 				Weapon_Stack.insert(Weapon_Indicator,wp.weapon_name)
 				Weapon_Indicator = !Weapon_Indicator
 				Weapon_List[wp.weapon_name].Curr_Mag_Ammo = wp.current_ammo
@@ -76,7 +84,12 @@ func _input(event):
 				emit_signal("Update_Weapon_Stack", Weapon_Stack)
 				exit(wp.weapon_name)
 				wp.queue_free()
-			print(wp.weapon_name)
+				Current_Weapon = Weapon_List[Weapon_Stack[0]]
+				enter()
+				print(Current_Weapon.Wep_Name)
+				
+				
+			#print(wp.weapon_name)
 			
 		
 
@@ -88,6 +101,9 @@ func Initialize(_Starting_Weaps: Array):
 		Weapon_Stack.push_back(s_weps)
 	
 	Current_Weapon = Weapon_List[Weapon_Stack[0]]
+	if Weapon_List[Weapon_Stack[1]]:
+		o_wep = Weapon_List[Weapon_Stack[1]]
+		hide_wep(o_wep.Wep_Name)
 	enter()
 	
 	
@@ -106,6 +122,10 @@ func exit(_next_weapon: String):
 	There are no checks for if there's only one weapon in the stack
 	The checks are handled in exits function
 '''
+func hide_wep(weapon_name: String):
+	var weapon_node = get_node("WeaponRig/" + weapon_name)
+	if weapon_node:
+		weapon_node.hide()
 func switch_Wep(weapon_name: String):
 	#if Weapon_Stack.size() > 1:
 	Current_Weapon = Weapon_List[weapon_name]
@@ -232,21 +252,22 @@ func _test_raycast(position: Vector3) -> void:
 	await get_tree().create_timer(1).timeout
 	instance.queue_free()
 	
-func drop_weapon(w_name: String):
+func spawn_drop_weapon(w_name: String):
 	print("WORK IN PROGRESS")
-	#var wep_ref = Weapon_Stack.find(w_name, 0)
-	#if wep_ref != -1 and Weapon_Stack.size() > 1:
+	var wep_ref = Weapon_Stack.find(w_name, 0)
+	#if wep_ref != -1 and Weapon_Stack.size() > 0:
+	if wep_ref != -1:
 		#Weapon_Stack.pop_at(wep_ref)
-		#emit_signal("Update_Weapon_Stack", Weapon_Stack)
-		#
-		#var Weapon_Dropped = Weapon_List[w_name].Weapon_Drop.instantiate()
-		#Weapon_Dropped.current_ammo = Weapon_List[w_name].Curr_Mag_Ammo
-		#Weapon_Dropped.reserve_ammo = Weapon_List[w_name].Reserve_Ammo
-		#
-		#Weapon_Dropped.set_global_transform($WeaponRig/tracer_spawn_point.get_global_transform())
-		#var World = get_tree().get_root().get_child(0)
-		#World.add_child(Weapon_Dropped)
-		#
+		emit_signal("Update_Weapon_Stack", Weapon_Stack)
+		
+		var Weapon_Dropped = Weapon_List[w_name].Weapon_Drop.instantiate()
+		Weapon_Dropped.current_ammo = Weapon_List[w_name].Curr_Mag_Ammo
+		Weapon_Dropped.reserve_ammo = Weapon_List[w_name].Reserve_Ammo
+		
+		Weapon_Dropped.set_global_transform($WeaponRig/tracer_spawn_point.get_global_transform())
+		var World = get_tree().get_root().get_child(0)
+		World.add_child(Weapon_Dropped)
+		
 		#Current_Weapon = Weapon_List[Weapon_Stack[0]]
 		#enter()
 

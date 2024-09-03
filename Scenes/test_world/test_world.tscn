@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwkxlbr2q60nh"]
+[gd_scene load_steps=22 format=3 uid="uid://dwkxlbr2q60nh"]
 
 [ext_resource type="Script" path="res://Scenes/test_world/test_world.gd" id="1_u8l0d"]
 [ext_resource type="PackedScene" uid="uid://cfde4dumfslig" path="res://player/player.tscn" id="2_pibag"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cs0cwmm66yb5f" path="res://Models/Weapons/smg/smg_of_the_future.gltf" id="4_hm3t6"]
 [ext_resource type="PackedScene" uid="uid://dfaprawobuuvd" path="res://Models/Enemies/test_enemy/test_enemy.tscn" id="5_pr0kc"]
 [ext_resource type="PackedScene" uid="uid://dycrppyyvnj7b" path="res://Models/Weapons/spawnable_weapons/sp_burst_rifle.tscn" id="6_uufha"]
+[ext_resource type="PackedScene" uid="uid://w1j3noycv2xt" path="res://Models/Weapons/spawnable_weapons/sp_sniper_rifle.tscn" id="7_tls7q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p6h5i"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -125,5 +126,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.10643)
 
 [node name="burst_rifle" parent="pickup_test" instance=ExtResource("6_uufha")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.362833, 0)
+
+[node name="pickup_test_sniper_rifle" type="Node3D" parent="."]
+
+[node name="SpSniperRifle" parent="pickup_test_sniper_rifle" instance=ExtResource("7_tls7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29277, 0.28321, 38.4209)
 
 [editable path="TestEnemy"]
