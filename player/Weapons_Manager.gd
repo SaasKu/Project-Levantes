@@ -28,7 +28,7 @@ var raycast_test = preload("res://Scenes/Assets/raycast_test.tscn")
 
 var in_pickup_range = false
 
-var wp
+var sp_weapon
 
 @export var _weapon_resources: Array[Weapon_Resource]
 
@@ -59,37 +59,37 @@ func _input(event):
 		#spawn_drop_weapon(Current_Weapon.Wep_Name)
 	if in_pickup_range and Input.is_action_pressed("pick_up_weapon"):
 		if Weapon_Stack.size() == 1:
-			var weapon_in_stack = Weapon_Stack.find(wp.weapon_name, 0)
+			var weapon_in_stack = Weapon_Stack.find(sp_weapon.weapon_name, 0)
 			if weapon_in_stack == -1:
-				Weapon_Stack.insert(Weapon_Indicator,wp.weapon_name)
+				Weapon_Stack.insert(Weapon_Indicator,sp_weapon.weapon_name)
 				Weapon_Indicator = !Weapon_Indicator
-				Weapon_List[wp.weapon_name].Curr_Mag_Ammo = wp.current_ammo
-				Weapon_List[wp.weapon_name].Reserve_Ammo = wp.reserve_ammo
+				Weapon_List[sp_weapon.weapon_name].Curr_Mag_Ammo = sp_weapon.current_ammo
+				Weapon_List[sp_weapon.weapon_name].Reserve_Ammo = sp_weapon.reserve_ammo
 				
 				emit_signal("Update_Weapon_Stack", Weapon_Stack)
-				exit(wp.weapon_name)
-				wp.queue_free()
-			print(wp.weapon_name)
+				exit(sp_weapon.weapon_name)
+				sp_weapon.queue_free()
+			print(sp_weapon.weapon_name)
 		elif Weapon_Stack.size() == 2:
-			var weapon_in_stack = Weapon_Stack.find(wp.weapon_name, 0)
+			var weapon_in_stack = Weapon_Stack.find(sp_weapon.weapon_name, 0)
 			if weapon_in_stack == -1:
 				spawn_drop_weapon(Current_Weapon.Wep_Name)
 				Weapon_Stack.remove_at(Weapon_Stack.find(Current_Weapon.Wep_Name, 0))
 				hide_wep(Current_Weapon.Wep_Name)
-				Weapon_Stack.insert(Weapon_Indicator,wp.weapon_name)
+				Weapon_Stack.insert(Weapon_Indicator,sp_weapon.weapon_name)
 				Weapon_Indicator = !Weapon_Indicator
-				Weapon_List[wp.weapon_name].Curr_Mag_Ammo = wp.current_ammo
-				Weapon_List[wp.weapon_name].Reserve_Ammo = wp.reserve_ammo
+				Weapon_List[sp_weapon.weapon_name].Curr_Mag_Ammo = sp_weapon.current_ammo
+				Weapon_List[sp_weapon.weapon_name].Reserve_Ammo = sp_weapon.reserve_ammo
 				
 				emit_signal("Update_Weapon_Stack", Weapon_Stack)
-				exit(wp.weapon_name)
-				wp.queue_free()
+				exit(sp_weapon.weapon_name)
+				sp_weapon.queue_free()
 				Current_Weapon = Weapon_List[Weapon_Stack[0]]
 				enter()
 				print(Current_Weapon.Wep_Name)
 				
 				
-			#print(wp.weapon_name)
+			#print(sp_weapon.weapon_name)
 			
 		
 
@@ -234,7 +234,7 @@ func _on_animation_player_animation_finished(anim_name):
 func _raycast() -> void:
 	var camera = %Camera3D
 	var space_state = camera.get_world_3d().direct_space_state
-	var screen_center = get_viewport().size / 2
+	var screen_center = get_viesp_weaponort().size / 2
 	var origin = camera.project_ray_origin(screen_center)
 	var endpoint = origin + camera.project_ray_normal(screen_center) * Current_Weapon.Projectile_Range
 	var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
@@ -278,10 +278,10 @@ func spawn_drop_weapon(w_name: String):
 
 
 func _on_pickup_detection_body_entered(body):
-	wp = body
+	sp_weapon = body
 	in_pickup_range = true
 
 
 func _on_pickup_detection_body_exited(body):
-	wp = null
+	sp_weapon = null
 	in_pickup_range = false
