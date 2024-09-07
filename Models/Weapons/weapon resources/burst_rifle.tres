@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_yf1dw")
 Wep_Name = "burst_rifle"
+Wep_Display_Name = "LR-45"
 Equip_Ani = "burst_rifle_equip"
 Fire_Ani = "burst_rifle_fire"
 Reload_Ani = "burst_rifle_reload"

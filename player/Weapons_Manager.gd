@@ -17,7 +17,6 @@ var Current_Weapon = null
 var o_wep = null
 
 var Weapon_Stack = [] #Should be 2 weapons at most
-
 var Weapon_Indicator: int = 0
 
 var Other_Weapon: String
@@ -29,6 +28,8 @@ var raycast_test = preload("res://Scenes/Assets/raycast_test.tscn")
 var in_pickup_range = false
 
 var sp_weapon
+
+var hud
 
 @export var _weapon_resources: Array[Weapon_Resource]
 
@@ -50,9 +51,10 @@ func _input(event):
 	if event.is_action_pressed("Weapon_Switch"):
 		if Weapon_Stack.size() > 1:
 			Weapon_Indicator = !Weapon_Indicator
-			exit(Weapon_Stack[Weapon_Indicator])
+			exit(Weapon_Stack[Weapon_Indicator], false)
 	if event.is_action_pressed("Shoot"):
 		fire_Wep()
+		print("Weapon: " + Current_Weapon.Wep_Name + "\n" + "Weapon_Indicator: " + str(Weapon_Indicator))
 	if event.is_action_pressed("Reload"):
 		reload()
 	#if event.is_action_pressed("Drop_Weapon"):
@@ -67,7 +69,7 @@ func _input(event):
 				Weapon_List[sp_weapon.weapon_name].Reserve_Ammo = sp_weapon.reserve_ammo
 				
 				emit_signal("Update_Weapon_Stack", Weapon_Stack)
-				exit(sp_weapon.weapon_name)
+				exit(sp_weapon.weapon_name, true)
 				sp_weapon.queue_free()
 			print(sp_weapon.weapon_name)
 		elif Weapon_Stack.size() == 2:
@@ -77,46 +79,66 @@ func _input(event):
 				Weapon_Stack.remove_at(Weapon_Stack.find(Current_Weapon.Wep_Name, 0))
 				hide_wep(Current_Weapon.Wep_Name)
 				Weapon_Stack.insert(Weapon_Indicator,sp_weapon.weapon_name)
-				Weapon_Indicator = !Weapon_Indicator
+				#Weapon_Indicator = !Weapon_Indicator
 				Weapon_List[sp_weapon.weapon_name].Curr_Mag_Ammo = sp_weapon.current_ammo
 				Weapon_List[sp_weapon.weapon_name].Reserve_Ammo = sp_weapon.reserve_ammo
 				
 				emit_signal("Update_Weapon_Stack", Weapon_Stack)
-				exit(sp_weapon.weapon_name)
+				exit(sp_weapon.weapon_name, true)
 				sp_weapon.queue_free()
 				Current_Weapon = Weapon_List[Weapon_Stack[0]]
 				enter()
 				print(Current_Weapon.Wep_Name)
 				
-				
+		
 			#print(sp_weapon.weapon_name)
 			
 		
 
 func Initialize(_Starting_Weaps: Array):
+	var wep_objs = []
 	for weapon in _weapon_resources:
 		Weapon_List[weapon.Wep_Name] = weapon
 	
 	for s_weps in _Starting_Weaps:
 		Weapon_Stack.push_back(s_weps)
+		
+	
+	hud = $"../HUD"
+	
+
+	hud.hud_initialize(Weapon_Stack, Weapon_List)
+	
 	
 	Current_Weapon = Weapon_List[Weapon_Stack[0]]
+	
+	for wep in Weapon_List.values():
+		if wep.Wep_Name != Current_Weapon.Wep_Name:
+			hide_wep(wep.Wep_Name)
 	if Weapon_List[Weapon_Stack[1]]:
 		o_wep = Weapon_List[Weapon_Stack[1]]
 		hide_wep(o_wep.Wep_Name)
+		
 	enter()
-	
+func call_update_pickup():
+	hud.hud_initialize(Weapon_Stack, Weapon_List)
 	
 func enter():
 	Animation_Player.queue(Current_Weapon.Equip_Ani)
 	
-	
-func exit(_next_weapon: String):
+func exit(_next_weapon: String, is_pickup: bool):
 	if Weapon_Stack.size() > 1 and _next_weapon != Current_Weapon.Wep_Name:
 		if Animation_Player.get_current_animation() != Current_Weapon.Dequip_Ani:
 			Animation_Player.play(Current_Weapon.Dequip_Ani)
 			Other_Weapon = _next_weapon
-			Weapon_Indicator = !Weapon_Indicator
+			if !is_pickup:
+				await Animation_Player.animation_finished
+				hud.update_weapon_indicator(Weapon_Indicator)
+			else:
+				#pass
+				call_update_pickup()
+			
+			
 
 '''
 	There are no checks for if there's only one weapon in the stack
@@ -137,11 +159,16 @@ func fire_Wep():
 	match f_mode:
 		"single" :
 			var cur_anim = Animation_Player.get_current_animation()
-			var anim_check = (cur_anim != Current_Weapon.Dequip_Ani) and (cur_anim != Current_Weapon.Equip_Ani)
+			var anim_check = (
+					(cur_anim != Current_Weapon.Dequip_Ani) and 
+					(cur_anim != Current_Weapon.Equip_Ani) and
+					(cur_anim != Current_Weapon.Fire_Ani)
+				)
 			if Current_Weapon.Curr_Mag_Ammo != 0 and anim_check:
 				_raycast()
 				Animation_Player.play(Current_Weapon.Fire_Ani)
 				Current_Weapon.Curr_Mag_Ammo -= 1
+				hud.update_ammo(Current_Weapon.Curr_Mag_Ammo, Current_Weapon.Reserve_Ammo, Weapon_Indicator)
 			elif Current_Weapon.Reserve_Ammo != 0 and anim_check:
 				reload()
 			# print("singlefire")
@@ -169,6 +196,7 @@ func fire_Wep():
 						print(str(Current_Weapon.Curr_Mag_Ammo) + "\n")
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished
+						hud.update_ammo(Current_Weapon.Curr_Mag_Ammo, Current_Weapon.Reserve_Ammo, Weapon_Indicator)
 						#if i == burst_amount-1:
 							#await Animation_Player.animation_finished
 					Current_Weapon.Is_Waiting = true
@@ -181,6 +209,7 @@ func fire_Wep():
 						await Animation_Player.animation_finished
 					Animation_Player.play(Current_Weapon.Fire_Ani)
 					Current_Weapon.Curr_Mag_Ammo -= 1
+					hud.update_ammo(Current_Weapon.Curr_Mag_Ammo, Current_Weapon.Reserve_Ammo, Weapon_Indicator)
 			elif Current_Weapon.Reserve_Ammo != 0 and Current_Weapon.Curr_Mag_Ammo == 0:
 				reload()
 		"auto":
@@ -193,6 +222,7 @@ func fire_Wep():
 						_raycast()
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished
+						hud.update_ammo(Current_Weapon.Curr_Mag_Ammo, Current_Weapon.Reserve_Ammo, Weapon_Indicator)
 						if Current_Weapon.Reserve_Ammo != 0 and Current_Weapon.Curr_Mag_Ammo == 0:
 							reload()
 				elif anim_checks and Current_Weapon.Curr_Mag_Ammo == 0 and Current_Weapon.Reserve_Ammo != 0:
@@ -217,6 +247,8 @@ func reload():
 			Animation_Player.play(Current_Weapon.Reload_Ani)
 			Current_Weapon.Curr_Mag_Ammo += refill_amount
 			Current_Weapon.Reserve_Ammo -= refill_amount
+			await Animation_Player.animation_finished
+			hud.update_ammo(Current_Weapon.Curr_Mag_Ammo, Current_Weapon.Reserve_Ammo, Weapon_Indicator)
 	else:
 		var cur_anim = Animation_Player.get_current_animation()
 		if ((cur_anim != Current_Weapon.Dequip_Ani) 
@@ -226,6 +258,8 @@ func reload():
 			Animation_Player.play(Current_Weapon.Reload_Ani)
 			Current_Weapon.Curr_Mag_Ammo += refill_amount
 			Current_Weapon.Reserve_Ammo = 0
+			await Animation_Player.animation_finished
+			hud.update_ammo(Current_Weapon.Curr_Mag_Ammo, Current_Weapon.Reserve_Ammo, Weapon_Indicator)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == Current_Weapon.Dequip_Ani:
@@ -234,7 +268,8 @@ func _on_animation_player_animation_finished(anim_name):
 func _raycast() -> void:
 	var camera = %Camera3D
 	var space_state = camera.get_world_3d().direct_space_state
-	var screen_center = get_viesp_weaponort().size / 2
+	
+	var screen_center = get_viewport().size / 2
 	var origin = camera.project_ray_origin(screen_center)
 	var endpoint = origin + camera.project_ray_normal(screen_center) * Current_Weapon.Projectile_Range
 	var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
@@ -253,7 +288,6 @@ func _test_raycast(position: Vector3) -> void:
 	instance.queue_free()
 	
 func spawn_drop_weapon(w_name: String):
-	print("WORK IN PROGRESS")
 	var wep_ref = Weapon_Stack.find(w_name, 0)
 	#if wep_ref != -1 and Weapon_Stack.size() > 0:
 	if wep_ref != -1:

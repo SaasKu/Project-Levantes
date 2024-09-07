@@ -42,7 +42,7 @@ func _on_area_3d_body_entered(body):
 	if body.is_in_group("Player"):
 		target = get_tree().get_nodes_in_group("Player")[0]
 		target_check = 1
-		print("IN")
+		#print("IN")
 
 
 
@@ -51,5 +51,5 @@ func _on_area_3d_body_exited(body):
 		target = get_tree().get_nodes_in_group("Player")[0]
 		target = null
 		target_check = 0
-		print("OUT")
+		#print("OUT")
 		show_happy()

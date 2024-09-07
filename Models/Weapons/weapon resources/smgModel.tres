@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_w8eg2")
 Wep_Name = "smgModel"
+Wep_Display_Name = "HH-50"
 Equip_Ani = "smg_equip"
 Fire_Ani = "smg_fire"
 Reload_Ani = "smg_reload"

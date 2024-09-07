@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_jcv7f")
 Wep_Name = "sniper_rifle"
+Wep_Display_Name = "Ascender"
 Equip_Ani = "sniper_rifle_equip"
 Fire_Ani = "sniper_rifle_fire"
 Reload_Ani = ""

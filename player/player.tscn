@@ -921,80 +921,6 @@ tracks/2/keys = {
 "values": [true, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_1jn1v"]
-resource_name = "sniper_rifle_fire"
-length = 2.4
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.04, 0.6, 1, 1.4, 1.5, 1.9, 2.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0.373047, -0.284248, -2.0419), Vector3(0.373047, -0.232819, -1.9514), Vector3(0.373047, -0.232258, -1.75533), Vector3(0.373047, -0.284248, -2.0419), Vector3(0.373047, -0.284248, -2.0419), Vector3(0.366182, -0.285745, -1.85851), Vector3(0.366182, -0.285745, -1.85851), Vector3(0.373047, -0.284248, -2.0419), Vector3(0.373047, -0.284248, -2.0419)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.02, 0.04, 0.6, 1, 1.9, 2.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0318872, 0, 0), Vector3(0.0318872, 0, 0), Vector3(0, 0, 0), Vector3(0.00815557, -0.0374144, 0.214523), Vector3(0.00815557, -0.0374144, 0.214523), Vector3(0, 0, 0)]
-}
-tracks/3/type = "bezier"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle/Bolt:position:x")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.6, 1, 1.4, 1.5, 1.9, 2.3)
-}
-tracks/4/type = "bezier"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle/Bolt:position:y")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.6, 1, 1.4, 1.5, 1.9, 2.3)
-}
-tracks/5/type = "bezier"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle/Bolt:position:z")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
-"points": PackedFloat32Array(7.72586, -0.25, 0, 0.25, 0, 7.72586, -0.25, 0, 0.25, 0, 11.6026, -0.25, 0, 0.25, 0, 11.6026, -0.25, 0, 0.25, 0, 7.72586, -0.25, 0, 0.25, 0, 7.72586, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.6, 1, 1.4, 1.5, 1.9, 2.3)
-}
-
 [sub_resource type="Animation" id="Animation_uowwx"]
 resource_name = "sniper_rifle_equip"
 length = 0.8
@@ -1077,87 +1003,78 @@ tracks/6/keys = {
 "values": [false, true, true]
 }
 
-[sub_resource type="Animation" id="Animation_5uxay"]
-resource_name = "sniper_rifle_unequip"
-length = 0.4
-step = 0.05
-tracks/0/type = "bezier"
+[sub_resource type="Animation" id="Animation_1jn1v"]
+resource_name = "sniper_rifle_fire"
+length = 2.4
+step = 0.01
+tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:position:x")
+tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0.373047, -0.25, 0, 0.25, 0, -0.776641, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
-tracks/1/type = "bezier"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:position:y")
+tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-0.284248, -0.25, 0, 0.25, 0, -1.18721, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.6, 1, 1.4, 1.5, 1.9, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.373047, -0.284248, -2.0419), Vector3(0.373047, -0.232819, -1.9514), Vector3(0.373047, -0.232258, -1.75533), Vector3(0.373047, -0.284248, -2.0419), Vector3(0.373047, -0.284248, -2.0419), Vector3(0.366182, -0.285745, -1.85851), Vector3(0.366182, -0.285745, -1.85851), Vector3(0.373047, -0.284248, -2.0419), Vector3(0.373047, -0.284248, -2.0419)]
 }
-tracks/2/type = "bezier"
+tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:position:z")
+tracks/2/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-2.0419, -0.25, 0, 0.25, 0, -0.99775, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.6, 1, 1.9, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0318872, 0, 0), Vector3(0.0318872, 0, 0), Vector3(0, 0, 0), Vector3(0.00815557, -0.0374144, 0.214523), Vector3(0.00815557, -0.0374144, 0.214523), Vector3(0, 0, 0)]
 }
 tracks/3/type = "bezier"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:rotation:x")
+tracks/3/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle/Bolt:position:x")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.425546, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0, 0.129594, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1, 1.4, 1.5, 1.9, 2.3)
 }
 tracks/4/type = "bezier"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:rotation:y")
+tracks/4/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle/Bolt:position:y")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.07566, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0, 1.66127, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1, 1.4, 1.5, 1.9, 2.3)
 }
 tracks/5/type = "bezier"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:rotation:z")
+tracks/5/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle/Bolt:position:z")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.86661e-08, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0, 0.4)
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.35),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(7.72586, -0.25, 0, 0.25, 0, 7.72586, -0.25, 0, 0.25, 0, 11.6026, -0.25, 0, 0.25, 0, 11.6026, -0.25, 0, 0.25, 0, 7.72586, -0.25, 0, 0.25, 0, 7.72586, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.6, 1, 1.4, 1.5, 1.9, 2.3)
 }
 
 [sub_resource type="Animation" id="Animation_1mt1l"]
@@ -1261,6 +1178,89 @@ tracks/8/keys = {
 "handle_modes": PackedInt32Array(0),
 "points": PackedFloat32Array(7.72586, -0.25, 0, 0.25, 0),
 "times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_5uxay"]
+resource_name = "sniper_rifle_unequip"
+length = 0.4
+step = 0.05
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0.373047, -0.25, 0, 0.25, 0, -0.776641, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-0.284248, -0.25, 0, 0.25, 0, -1.18721, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-2.0419, -0.25, 0, 0.25, 0, -0.99775, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -0.425546, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1.07566, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 2.86661e-08, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_okd0m"]
@@ -1440,11 +1440,6 @@ size = Vector3(2.92481, 2.45361, 3.20447)
 script = ExtResource("1_r47ex")
 HEADBOB_SWAY_AMOUNT = 0.01
 
-[node name="HUD" parent="." instance=ExtResource("7_nsd04")]
-scale = Vector2(1.00143, 1)
-mouse_filter = 1
-mouse_force_pass_scroll_events = false
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_j86j8")
@@ -1489,6 +1484,11 @@ render_target_update_mode = 4
 [node name="GunCam" type="Camera3D" parent="Head/Camera3D/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.79666, 0)
 cull_mask = 1047554
+
+[node name="HUD" parent="Head/Camera3D" instance=ExtResource("7_nsd04")]
+scale = Vector2(1.00143, 1)
+mouse_filter = 1
+mouse_force_pass_scroll_events = false
 
 [node name="Weapons_Manager" type="Node3D" parent="Head/Camera3D"]
 script = ExtResource("2_wsucc")
