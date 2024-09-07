@@ -84,6 +84,7 @@ func fire_Wep():
 			if Current_Weapon.Curr_Mag_Ammo != 0 and anim_check:
 				_raycast()
 				Animation_Player.play(Current_Weapon.Fire_Ani)
+				$AudioStreamPlayer.play()
 				Current_Weapon.Curr_Mag_Ammo -= 1
 			elif Current_Weapon.Reserve_Ammo != 0 and anim_check:
 				reload()
@@ -108,6 +109,7 @@ func fire_Wep():
 						#elif i == 2:
 							#await Animation_Player.animation_finished
 						Animation_Player.play(Current_Weapon.Fire_Ani)
+						$AudioStreamPlayer.play()
 						_raycast()
 						print(str(Current_Weapon.Curr_Mag_Ammo) + "\n")
 						Current_Weapon.Curr_Mag_Ammo -= 1
@@ -139,6 +141,7 @@ func fire_Wep():
 				if anim_checks and Current_Weapon.Curr_Mag_Ammo != 0:
 					while Input.is_action_pressed("Shoot") and Current_Weapon.Curr_Mag_Ammo != 0 and Animation_Player.get_current_animation() != Current_Weapon.Reload_Ani:
 						Animation_Player.play(Current_Weapon.Fire_Ani)
+						$AudioStreamPlayer.play()
 						_raycast()
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished
