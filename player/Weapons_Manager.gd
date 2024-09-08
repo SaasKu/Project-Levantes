@@ -11,6 +11,7 @@ extends Node3D
 
 @onready var Animation_Player = get_node("WeaponRig/AnimationPlayer")
 
+signal hit(target)
 
 var Current_Weapon = null
 
@@ -169,6 +170,7 @@ func fire_Wep():
 			if Current_Weapon.Curr_Mag_Ammo != 0 and anim_check:
 				_raycast()
 				Animation_Player.play(Current_Weapon.Fire_Ani)
+				$AudioStreamPlayer.play()
 				Current_Weapon.Curr_Mag_Ammo -= 1
 				hud.update_ammo(Current_Weapon.Curr_Mag_Ammo, Current_Weapon.Reserve_Ammo, Weapon_Indicator)
 			elif Current_Weapon.Reserve_Ammo != 0 and anim_check:
@@ -194,6 +196,7 @@ func fire_Wep():
 						#elif i == 2:
 							#await Animation_Player.animation_finished
 						Animation_Player.play(Current_Weapon.Fire_Ani)
+						$AudioStreamPlayer.play()
 						_raycast()
 						print(str(Current_Weapon.Curr_Mag_Ammo) + "\n")
 						Current_Weapon.Curr_Mag_Ammo -= 1
@@ -221,6 +224,10 @@ func fire_Wep():
 				if anim_checks and Current_Weapon.Curr_Mag_Ammo != 0:
 					while Input.is_action_pressed("Shoot") and Current_Weapon.Curr_Mag_Ammo != 0 and Animation_Player.get_current_animation() != Current_Weapon.Reload_Ani:
 						Animation_Player.play(Current_Weapon.Fire_Ani)
+						$AudioStreamPlayer.play()
+						if $WeaponRig/smgModel/SMGRay.is_colliding():
+							emit_signal("hit", $WeaponRig/smgModel/SMGRay.get_collider())
+							print($WeaponRig/smgModel/SMGRay.get_collider())
 						_raycast()
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished
@@ -276,7 +283,7 @@ func _raycast() -> void:
 	var endpoint = origin + camera.project_ray_normal(screen_center) * Current_Weapon.Projectile_Range
 	var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
 	query.collide_with_bodies = true
-	query.collide_with_areas = true
+	query.collide_with_areas = false
 	var result = space_state.intersect_ray(query)
 	if result:
 		print(screen_center)

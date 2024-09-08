@@ -11,6 +11,8 @@ class_name Weapon_Resource
 @export var Dequip_Ani: String
 @export var Wait_Ani: String
 
+@export var Fire_Sound: String
+
 @export var Curr_Mag_Ammo: int
 @export var Reserve_Ammo: int
 @export var Max_Mag_Capacity: int

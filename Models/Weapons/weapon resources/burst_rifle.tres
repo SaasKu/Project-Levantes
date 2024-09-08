@@ -12,6 +12,7 @@ Fire_Ani = "burst_rifle_fire"
 Reload_Ani = "burst_rifle_reload"
 Dequip_Ani = "burst_rifle_unequip"
 Wait_Ani = "burst_wait_animation"
+Fire_Sound = "demo_gunshot"
 Curr_Mag_Ammo = 30
 Reserve_Ammo = 120
 Max_Mag_Capacity = 30
