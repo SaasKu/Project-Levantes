@@ -5,8 +5,14 @@ extends Node3D
 @onready var face_target_x = $f_t_y/f_t_x
 var target : Node3D
 var target_pos
+var enemy
 @onready var speed = face_target_y.follow_speed
+@onready var non_flame_y = $f_t_y/f_t_y_model_group/non_flame_y
+@onready var f_t_y_shield = $f_t_y/f_t_y_shield
+@onready var non_face_x = $f_t_y/f_t_x/f_t_x_model_group/non_face_x
+@onready var f_t_x_shield = $f_t_y/f_t_x/f_t_x_shield
 func _ready():
+	enemy = $CharacterBody3D
 	pass
 	
 
@@ -54,3 +60,21 @@ func _on_area_3d_body_exited(body):
 		target = null
 		print("OUT")
 		show_happy()
+		
+
+
+
+func _on_weapons_manager_hit(tar):
+	if tar == enemy:
+		print("HITTTTT")
+		non_flame_y.hide()
+		non_face_x.hide()
+		f_t_y_shield.show()
+		f_t_x_shield.show()
+		await get_tree().create_timer(.1).timeout
+		non_flame_y.show()
+		non_face_x.show()
+		f_t_y_shield.hide()
+		f_t_x_shield.hide()
+	
+	pass # Replace with function body.

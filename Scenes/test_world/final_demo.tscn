@@ -1,4 +1,4 @@
-[gd_scene load_steps=217 format=3 uid="uid://b1o8045la0x6s"]
+[gd_scene load_steps=218 format=3 uid="uid://b1o8045la0x6s"]
 
 [ext_resource type="Script" path="res://Scenes/test_world/final_demo.gd" id="1_n2tlg"]
 [ext_resource type="Texture2D" uid="uid://cxxcdukvgnoqo" path="res://world_objects/ARENA_arenawall.png" id="1_y5xmo"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://c6g86oghfcorm" path="res://audio/lightsout_drop.mp3" id="19_h6wki"]
 [ext_resource type="Script" path="res://Models/Enemies/test_enemy/ta.gd" id="20_n8wpw"]
 [ext_resource type="Script" path="res://Models/Enemies/test_enemy/f_t.gd" id="21_bc57m"]
+[ext_resource type="PackedScene" uid="uid://dfaprawobuuvd" path="res://Models/Enemies/test_enemy/test_enemy.tscn" id="22_loyvs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2tcy1"]
 resource_name = "Material.004"
@@ -2559,6 +2560,46 @@ shadow_mesh = SubResource("ArrayMesh_j4464")
 [sub_resource type="SphereShape3D" id="SphereShape3D_hdms1"]
 radius = 0.181508
 
+[sub_resource type="Animation" id="Animation_hk2vf"]
+resource_name = "fire"
+length = 1.501
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("f_t_y/f_t_x/f_t_x_model_group/sniper_rifle2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0124386, -0.27617, 0.0438594), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("f_t_y/f_t_x/f_t_x_model_group/sniper_rifle2:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.702983, -0.0542269, -1.52156), Vector3(0.9392, -0.0434508, -1.45447), Vector3(0.702983, -0.0542269, -1.52156)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("f_t_y/f_t_x/f_t_x_model_group/sniper_rifle2/DirectionalLight3D:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 5.091, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_cml7w"]
 resource_name = "load"
 tracks/0/type = "value"
@@ -2644,46 +2685,6 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0.129594, 1.66127, 7.72586), Vector3(0.129594, 1.84945, 11.8216), Vector3(0.129594, 1.66127, 7.72586)]
-}
-
-[sub_resource type="Animation" id="Animation_hk2vf"]
-resource_name = "fire"
-length = 1.501
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("f_t_y/f_t_x/f_t_x_model_group/sniper_rifle2:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0124386, -0.27617, 0.0438594), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("f_t_y/f_t_x/f_t_x_model_group/sniper_rifle2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.702983, -0.0542269, -1.52156), Vector3(0.9392, -0.0434508, -1.45447), Vector3(0.702983, -0.0542269, -1.52156)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("f_t_y/f_t_x/f_t_x_model_group/sniper_rifle2/DirectionalLight3D:light_energy")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [0.0, 5.091, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mng6t"]
@@ -4221,8 +4222,15 @@ safe_margin = 2.463
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/TestEnemy7/CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_n22x4")
 
+[node name="TestEnemy" parent="." instance=ExtResource("22_loyvs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3868, 1.27848, -7.94585)
+
+[node name="Angry_Flame" parent="TestEnemy/f_t_y/f_t_y_model_group" index="2"]
+visible = false
+
 [connection signal="glass_broken" from="ARENA/enemy_room/lights/ALIEN_LAMP3" to="." method="_on_glass_broken"]
 [connection signal="hit" from="Player/Head/Camera3D/Weapons_Manager" to="ARENA/enemy_room/lights/ALIEN_LAMP3" method="_on_hit"]
+[connection signal="hit" from="Player/Head/Camera3D/Weapons_Manager" to="Enemies/TestEnemy7" method="_on_weapons_manager_hit"]
 [connection signal="animation_finished" from="Player/Head/Camera3D/Weapons_Manager/WeaponRig/AnimationPlayer" to="Player/Head/Camera3D/Weapons_Manager" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Enemies/TestEnemy3/Area3D" to="Enemies/TestEnemy3" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Enemies/TestEnemy3/Area3D" to="Enemies/TestEnemy3" method="_on_area_3d_body_exited"]
@@ -4237,3 +4245,4 @@ shape = SubResource("CapsuleShape3D_n22x4")
 
 [editable path="Player/Head/Camera3D/Weapons_Manager/WeaponRig/smgModel"]
 [editable path="Player/Head/Camera3D/Weapons_Manager/WeaponRig/burst_rifle"]
+[editable path="TestEnemy"]
