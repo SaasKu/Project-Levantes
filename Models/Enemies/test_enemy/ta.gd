@@ -37,8 +37,9 @@ func show_happy():
 
 
 func _on_area_3d_body_entered(body):
-	target = get_tree().get_nodes_in_group("Player")[0]
-	print("IN")
+	if body == %Player:
+		target = body
+		print("IN")
 
 
 
