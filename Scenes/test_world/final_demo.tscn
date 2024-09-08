@@ -3205,6 +3205,7 @@ material_override = SubResource("StandardMaterial3D_g7ibg")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/Head/Camera3D/Weapons_Manager"]
 stream = ExtResource("14_dekva")
 volume_db = -11.245
+pitch_scale = 0.6
 max_polyphony = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
