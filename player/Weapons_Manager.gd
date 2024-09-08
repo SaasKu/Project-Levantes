@@ -59,12 +59,12 @@ func _input(event):
 		reload()
 	#if event.is_action_pressed("Drop_Weapon"):
 		#spawn_drop_weapon(Current_Weapon.Wep_Name)
-	if in_pickup_range and Input.is_action_pressed("pick_up_weapon"):
+	if in_pickup_range and Input.is_action_just_pressed("pick_up_weapon"):
 		if Weapon_Stack.size() == 1:
 			var weapon_in_stack = Weapon_Stack.find(sp_weapon.weapon_name, 0)
 			if weapon_in_stack == -1:
-				Weapon_Stack.insert(Weapon_Indicator,sp_weapon.weapon_name)
 				Weapon_Indicator = !Weapon_Indicator
+				Weapon_Stack.insert(Weapon_Indicator,sp_weapon.weapon_name)
 				Weapon_List[sp_weapon.weapon_name].Curr_Mag_Ammo = sp_weapon.current_ammo
 				Weapon_List[sp_weapon.weapon_name].Reserve_Ammo = sp_weapon.reserve_ammo
 				
@@ -78,15 +78,16 @@ func _input(event):
 				spawn_drop_weapon(Current_Weapon.Wep_Name)
 				Weapon_Stack.remove_at(Weapon_Stack.find(Current_Weapon.Wep_Name, 0))
 				hide_wep(Current_Weapon.Wep_Name)
-				Weapon_Stack.insert(Weapon_Indicator,sp_weapon.weapon_name)
 				#Weapon_Indicator = !Weapon_Indicator
+				Weapon_Stack.insert(Weapon_Indicator,sp_weapon.weapon_name)
+				
 				Weapon_List[sp_weapon.weapon_name].Curr_Mag_Ammo = sp_weapon.current_ammo
 				Weapon_List[sp_weapon.weapon_name].Reserve_Ammo = sp_weapon.reserve_ammo
 				
 				emit_signal("Update_Weapon_Stack", Weapon_Stack)
 				exit(sp_weapon.weapon_name, true)
 				sp_weapon.queue_free()
-				Current_Weapon = Weapon_List[Weapon_Stack[0]]
+				Current_Weapon = Weapon_List[Weapon_Stack[Weapon_Indicator]]
 				enter()
 				print(Current_Weapon.Wep_Name)
 				
@@ -115,13 +116,14 @@ func Initialize(_Starting_Weaps: Array):
 	for wep in Weapon_List.values():
 		if wep.Wep_Name != Current_Weapon.Wep_Name:
 			hide_wep(wep.Wep_Name)
-	if Weapon_List[Weapon_Stack[1]]:
-		o_wep = Weapon_List[Weapon_Stack[1]]
-		hide_wep(o_wep.Wep_Name)
+	if Weapon_Stack.size() > 1 and Weapon_List[Weapon_Stack[1]]:
+			o_wep = Weapon_List[Weapon_Stack[1]]
+			hide_wep(o_wep.Wep_Name)
 		
 	enter()
 func call_update_pickup():
 	hud.hud_initialize(Weapon_Stack, Weapon_List)
+	hud.update_weapon_indicator(Weapon_Indicator)
 	
 func enter():
 	Animation_Player.queue(Current_Weapon.Equip_Ani)
@@ -314,6 +316,7 @@ func spawn_drop_weapon(w_name: String):
 func _on_pickup_detection_body_entered(body):
 	sp_weapon = body
 	in_pickup_range = true
+	print(sp_weapon)
 
 
 func _on_pickup_detection_body_exited(body):

@@ -394,77 +394,79 @@ shadow_mesh = SubResource("ArrayMesh_mtp6c")
 [sub_resource type="BoxShape3D" id="BoxShape3D_lum80"]
 size = Vector3(0.722778, 0.493225, 3.34845)
 
-[node name="SpSniperRifle" type="RigidBody3D"]
+[node name="sniper_rifle" type="RigidBody3D"]
+collision_layer = 8
+collision_mask = 13
 script = ExtResource("1_1t410")
 weapon_name = "sniper_rifle"
 current_ammo = 5
 
-[node name="sniper_rifle" type="Node3D" parent="."]
+[node name="sniper_rifle_model" type="Node3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0241489, 0, -0.737992)
 
-[node name="Empty" type="Node3D" parent="sniper_rifle"]
+[node name="Empty" type="Node3D" parent="sniper_rifle_model"]
 transform = Transform3D(0, 9.1, 0, 0, 0, -9.1, -9.1, 0, 0, -1.45868, 0, 0)
 
-[node name="Cylinder" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Cylinder" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.235042, 0, 0, 0, 0, -0.235042, 0, 0.235042, 0, 0, 1.55406, 15.8729)
 material_override = SubResource("StandardMaterial3D_y24kx")
 mesh = SubResource("ArrayMesh_fwrkl")
 skeleton = NodePath("")
 
-[node name="Cylinder_001" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Cylinder_001" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.365083, 0, 0, 0, 0, -0.365083, 0, 0.365083, 0, 0, 1.01946, 4.77347)
 mesh = SubResource("ArrayMesh_lleic")
 skeleton = NodePath("")
 
-[node name="Main Barrel" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Main Barrel" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.365083, 0, 0, 0, 0, -0.365083, 0, 0.365083, 0, 0, 1.01946, 13.6669)
 material_override = SubResource("StandardMaterial3D_4f81l")
 mesh = SubResource("ArrayMesh_jc0mm")
 skeleton = NodePath("")
 
-[node name="Bolt" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Bolt" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.0437092, 0.0488108, 0, -0.0488108, 0.0437092, 0, 0, 0, 0.0655209, 0.129594, 1.66127, 7.72586)
 material_override = SubResource("StandardMaterial3D_dbfai")
 mesh = SubResource("ArrayMesh_h7x8l")
 skeleton = NodePath("")
 
-[node name="BarrelAttachment" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="BarrelAttachment" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.217742, 0, 0, 0, 0, -0.217742, 0, 0.217742, 0, 0, 1.01946, 6.45194)
 material_override = SubResource("StandardMaterial3D_lub5q")
 mesh = SubResource("ArrayMesh_t405b")
 skeleton = NodePath("")
 
-[node name="Mag Release" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Mag Release" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.235042, 0, 0, 0, 0, -0.235042, 0, 0.235042, 0, 0, 2.06905, 15.136)
 material_override = SubResource("StandardMaterial3D_lub5q")
 mesh = SubResource("ArrayMesh_rtu63")
 skeleton = NodePath("")
 
-[node name="Cylinder_011" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Cylinder_011" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.235042, 0, 0, 0, 0, -0.235042, 0, 0.235042, 0, 0, 1.55406, 15.8729)
 visible = false
 mesh = SubResource("ArrayMesh_c8ij7")
 skeleton = NodePath("")
 
-[node name="Scope" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Scope" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.215528, 0, 0, 0, -2.56929e-08, 0.215528, 0, -0.215528, -2.56929e-08, 0, 2.07104, 14.0395)
 material_override = SubResource("StandardMaterial3D_jwd18")
 mesh = SubResource("ArrayMesh_m6vgc")
 skeleton = NodePath("")
 
-[node name="Trigger" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Trigger" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.239955, 0, 0, 0, -2.86049e-08, -0.239955, 0, 0.239955, -2.86049e-08, 0, 1.55406, 15.8729)
 material_override = SubResource("StandardMaterial3D_4f81l")
 mesh = SubResource("ArrayMesh_snoqy")
 skeleton = NodePath("")
 
-[node name="OriginalStock" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="OriginalStock" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.235042, 0, 0, 0, 0, -0.235042, 0, 0.235042, 0, 0, 1.55406, 15.8729)
 material_override = SubResource("StandardMaterial3D_4f81l")
 mesh = SubResource("ArrayMesh_0dkpc")
 skeleton = NodePath("")
 
-[node name="Tube" type="MeshInstance3D" parent="sniper_rifle"]
+[node name="Tube" type="MeshInstance3D" parent="sniper_rifle_model"]
 transform = Transform3D(0.235042, 0, 0, 0, 0, -0.235042, 0, 0.235042, 0, 0, 1.55406, 15.8729)
 material_override = SubResource("StandardMaterial3D_4f81l")
 mesh = SubResource("ArrayMesh_t47f4")

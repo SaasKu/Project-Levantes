@@ -1493,7 +1493,7 @@ mouse_force_pass_scroll_events = false
 [node name="Weapons_Manager" type="Node3D" parent="Head/Camera3D"]
 script = ExtResource("2_wsucc")
 _weapon_resources = Array[Resource("res://Models/Weapons/weapon_resource.gd")]([ExtResource("3_0poh5"), ExtResource("4_kb8oe"), ExtResource("6_ikr8b")])
-Starting_Weapons = Array[String](["smgModel", "sniper_rifle"])
+Starting_Weapons = Array[String](["smgModel"])
 
 [node name="WeaponRig" type="Node3D" parent="Head/Camera3D/Weapons_Manager"]
 unique_name_in_owner = true
