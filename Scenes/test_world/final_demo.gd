@@ -16,6 +16,8 @@ func _process(delta):
 func _on_glass_broken():
 	$AudioStreamPlayer.stream_paused = true
 	$Timer.start()
+	for enemy in $Enemies.get_children():
+		enemy.get_child(1).monitoring = true
 
 func _on_timer_timeout():
 	$AudioStreamPlayer2.playing = true

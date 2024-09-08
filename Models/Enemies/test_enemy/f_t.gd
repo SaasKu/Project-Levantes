@@ -2,6 +2,7 @@ extends Node3D
 
 
 @export var turn_speed = 60
+@export var follow_speed = 0.05
 
 func face_point(point: Vector3, delta: float):
 	var local_point = to_local(point)
