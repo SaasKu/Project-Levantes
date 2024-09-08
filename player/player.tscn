@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cfde4dumfslig"]
+[gd_scene load_steps=50 format=3 uid="uid://cfde4dumfslig"]
 
 [ext_resource type="Script" path="res://player/player_controller.gd" id="1_r47ex"]
 [ext_resource type="PackedScene" uid="uid://cgncprbjcjodd" path="res://Models/smg.gltf" id="2_fe7wy"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://c74kyau0hyqyp" path="res://Models/Weapons/weapon resources/sniper_rifle.tres" id="6_ikr8b"]
 [ext_resource type="PackedScene" uid="uid://dssfcs6qgya2v" path="res://UI/hud.tscn" id="7_nsd04"]
 [ext_resource type="PackedScene" uid="uid://c1jbgc4u6tnn1" path="res://Models/Weapons/sniper_rifle/sniper_rifle.tscn" id="8_wjqy1"]
+[ext_resource type="AudioStream" uid="uid://baevfydm4ntqa" path="res://audio/gunshot_final_single_pitch_lower.mp3" id="10_mfsw1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j86j8"]
 
@@ -1531,6 +1532,17 @@ material_override = SubResource("StandardMaterial3D_23w36")
 [node name="Trigger" parent="Head/Camera3D/Weapons_Manager/WeaponRig/smgModel" index="5"]
 material_override = SubResource("StandardMaterial3D_23w36")
 
+[node name="SMGRay" type="RayCast3D" parent="Head/Camera3D/Weapons_Manager/WeaponRig/smgModel"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.8339)
+target_position = Vector3(-10, 5, -200)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Head/Camera3D/Weapons_Manager/WeaponRig/smgModel"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+light_color = Color(1, 0.541176, 0.227451, 1)
+light_energy = 0.0
+light_angular_distance = 22.5
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Head/Camera3D/Weapons_Manager/WeaponRig"]
 unique_name_in_owner = true
 root_node = NodePath("../../../../..")
@@ -1633,6 +1645,11 @@ layers = 2
 
 [node name="Tube" parent="Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle" index="11"]
 layers = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Head/Camera3D/Weapons_Manager"]
+stream = ExtResource("10_mfsw1")
+volume_db = -11.245
+max_polyphony = 3
 
 [node name="pickup_detection" type="Area3D" parent="."]
 collision_layer = 0
