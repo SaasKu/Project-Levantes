@@ -3,9 +3,12 @@ extends Node3D
 
 @onready var face_target_y = $f_t_y
 @onready var face_target_x = $f_t_y/f_t_x
+@onready var Animation_Player = get_node("AnimationPlayer")
 var target : Node3D
 var target_pos
 var enemy
+
+var health = 5
 @onready var speed = face_target_y.follow_speed
 @onready var non_flame_y = $f_t_y/f_t_y_model_group/non_flame_y
 @onready var f_t_y_shield = $f_t_y/f_t_y_shield
@@ -49,14 +52,14 @@ func show_happy():
 
 
 func _on_area_3d_body_entered(body):
-	if body == %Player:
+	if body.is_in_group("Player") or body == %Player:
 		target = body
 		print("IN")
 
 
 
 func _on_area_3d_body_exited(body):
-	if body == %Player:
+	if body.is_in_group("Player") or body == %Player:
 		target = null
 		print("OUT")
 		show_happy()
@@ -76,5 +79,11 @@ func _on_weapons_manager_hit(tar):
 		non_face_x.show()
 		f_t_y_shield.hide()
 		f_t_x_shield.hide()
+		
+		health -= 1
+		if health == 0:
+			Animation_Player.queue("explosion")
+			await Animation_Player.animation_finished
+			$".".queue_free()
 	
 	pass # Replace with function body.

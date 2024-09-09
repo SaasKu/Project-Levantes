@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://dfaprawobuuvd"]
+[gd_scene load_steps=91 format=3 uid="uid://dfaprawobuuvd"]
 
 [ext_resource type="Script" path="res://Models/Enemies/test_enemy/ta.gd" id="1_xtenq"]
 [ext_resource type="Script" path="res://Models/Enemies/test_enemy/f_t.gd" id="2_l1paq"]
@@ -912,8 +912,114 @@ tracks/6/keys = {
 "values": [Vector3(0.129594, 1.66127, 7.72586), Vector3(0.129594, 1.84945, 11.8216), Vector3(0.129594, 1.66127, 7.72586)]
 }
 
+[sub_resource type="Animation" id="Animation_0x7n3"]
+resource_name = "explosion"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(2.5, 2.5, 2.5), Vector3(3, 3, 3)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bwh8k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Explosion:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Explosion:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Explosion:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mng6t"]
 _data = {
+"RESET": SubResource("Animation_bwh8k"),
+"explosion": SubResource("Animation_0x7n3"),
 "fire": SubResource("Animation_hk2vf"),
 "load": SubResource("Animation_cml7w")
 }
@@ -921,6 +1027,11 @@ _data = {
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fgb54"]
 radius = 1.70671
 height = 3.41343
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lavs"]
+albedo_color = Color(50.296, 1.5, 0.344, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_k457u"]
 
 [node name="TestEnemy" type="Node3D"]
 script = ExtResource("1_xtenq")
@@ -997,19 +1108,19 @@ mesh = SubResource("ArrayMesh_bp4wj")
 skeleton = NodePath("")
 
 [node name="Righthand2" type="MeshInstance3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x"]
-transform = Transform3D(0.135631, -0.0115106, -0.0346328, -0.00204309, -0.135472, 0.0370248, -0.0364382, -0.0352491, -0.130987, 0.716013, -0.354967, 0.953408)
+transform = Transform3D(0.135631, -0.0115109, -0.0346326, -0.00204345, -0.135472, 0.0370248, -0.0364381, -0.0352491, -0.130987, 0.716013, -0.354967, 0.953408)
 material_override = SubResource("StandardMaterial3D_k6lof")
 mesh = SubResource("ArrayMesh_g18ih")
 skeleton = NodePath("")
 
 [node name="RightForearm_002" type="MeshInstance3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x"]
-transform = Transform3D(0.0890429, -0.100375, -0.0415212, -0.107458, -0.0892422, -0.0147091, -0.0158699, 0.0410917, -0.133369, 0.690388, 0.188106, 0.224649)
+transform = Transform3D(0.089043, -0.100375, -0.0415209, -0.107458, -0.0892423, -0.0147091, -0.0158697, 0.0410915, -0.133369, 0.690388, 0.188106, 0.224649)
 material_override = SubResource("StandardMaterial3D_64yr4")
 mesh = SubResource("ArrayMesh_g4ysb")
 skeleton = NodePath("")
 
 [node name="Righthand_002" type="MeshInstance3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x"]
-transform = Transform3D(0.0890429, -0.100375, -0.0415213, -0.106744, -0.0709117, -0.0574894, 0.0201213, 0.0680015, -0.121238, 0.730006, 0.51637, 0.156809)
+transform = Transform3D(0.0890428, -0.100375, -0.0415207, -0.106744, -0.0709118, -0.0574893, 0.0201217, 0.068001, -0.121238, 0.730006, 0.51637, 0.156809)
 material_override = SubResource("StandardMaterial3D_k6lof")
 mesh = SubResource("ArrayMesh_ss0lo")
 skeleton = NodePath("")
@@ -1027,7 +1138,7 @@ mesh = SubResource("ArrayMesh_mb68c")
 skeleton = NodePath("")
 
 [node name="sniper_rifle2" type="Node3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.702983, -0.0542269, -1.52156)
+transform = Transform3D(-3.61999e-07, 0.1, 1.94118e-23, -0.1, -3.61999e-07, 4.44089e-16, 4.44089e-16, 1.58819e-21, 0.1, 0.702983, -0.0542269, -1.52156)
 
 [node name="Empty" type="Node3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x/sniper_rifle2"]
 transform = Transform3D(0, 9.1, 0, 0, 0, -9.1, -9.1, 0, 0, -1.45868, 0, 0)
@@ -1050,7 +1161,7 @@ mesh = SubResource("ArrayMesh_ns5c6")
 skeleton = NodePath("")
 
 [node name="Bolt" type="MeshInstance3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x/sniper_rifle2"]
-transform = Transform3D(0.0437092, 0.0488108, 3.79469e-19, -0.0488108, 0.0437092, 4.65661e-10, 0, 0, 0.0655209, 0.129593, 1.66127, 7.72586)
+transform = Transform3D(0.0437092, 0.0488108, 3.79469e-19, -0.0488108, 0.0437092, 4.65661e-10, 0, 0, 0.0655209, 0.129594, 1.66127, 7.72586)
 material_override = SubResource("StandardMaterial3D_dbfai")
 mesh = SubResource("ArrayMesh_locr0")
 skeleton = NodePath("")
@@ -1182,6 +1293,11 @@ libraries = {
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_fgb54")
+
+[node name="Explosion" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_7lavs")
+mesh = SubResource("SphereMesh_k457u")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]

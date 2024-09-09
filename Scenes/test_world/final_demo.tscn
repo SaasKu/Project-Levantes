@@ -4223,15 +4223,13 @@ safe_margin = 2.463
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Enemies/TestEnemy7/CharacterBody3D"]
 shape = SubResource("CapsuleShape3D_n22x4")
 
-[node name="TestEnemy" parent="." instance=ExtResource("22_loyvs")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3868, 1.27848, -7.94585)
-
-[node name="Angry_Flame" parent="TestEnemy/f_t_y/f_t_y_model_group" index="2"]
-visible = false
+[node name="TestEnemy2" parent="." instance=ExtResource("22_loyvs")]
+transform = Transform3D(-0.998789, 0, -0.0491985, 0, 1, 0, 0.0491985, 0, -0.998789, 0, 1.115, -12.8249)
 
 [connection signal="glass_broken" from="ARENA/enemy_room/lights/ALIEN_LAMP3" to="." method="_on_glass_broken"]
 [connection signal="hit" from="Player/Head/Camera3D/Weapons_Manager" to="ARENA/enemy_room/lights/ALIEN_LAMP3" method="_on_hit"]
 [connection signal="hit" from="Player/Head/Camera3D/Weapons_Manager" to="Enemies/TestEnemy7" method="_on_weapons_manager_hit"]
+[connection signal="hit" from="Player/Head/Camera3D/Weapons_Manager" to="TestEnemy2" method="_on_weapons_manager_hit"]
 [connection signal="animation_finished" from="Player/Head/Camera3D/Weapons_Manager/WeaponRig/AnimationPlayer" to="Player/Head/Camera3D/Weapons_Manager" method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Enemies/TestEnemy3/Area3D" to="Enemies/TestEnemy3" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="Enemies/TestEnemy3/Area3D" to="Enemies/TestEnemy3" method="_on_area_3d_body_exited"]
@@ -4246,4 +4244,3 @@ visible = false
 
 [editable path="Player/Head/Camera3D/Weapons_Manager/WeaponRig/smgModel"]
 [editable path="Player/Head/Camera3D/Weapons_Manager/WeaponRig/burst_rifle"]
-[editable path="TestEnemy"]

@@ -61,7 +61,7 @@ unique_name_in_owner = true
 [node name="plr" type="Node3D" parent="Player"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="CharacterBody3D" parent="Player/plr" groups=["Player"] instance=ExtResource("2_pibag")]
+[node name="CharacterBody3D" parent="Player/plr" instance=ExtResource("2_pibag")]
 
 [node name="SmgObjVar" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -25.032, 8.02512, 21.9947)
