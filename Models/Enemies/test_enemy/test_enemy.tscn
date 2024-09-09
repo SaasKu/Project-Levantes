@@ -1121,7 +1121,7 @@ mesh = SubResource("ArrayMesh_g4ysb")
 skeleton = NodePath("")
 
 [node name="Righthand_002" type="MeshInstance3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x"]
-transform = Transform3D(0.0890428, -0.100375, -0.0415207, -0.106744, -0.0709116, -0.0574893, 0.0201217, 0.068001, -0.121238, 0.730006, 0.51637, 0.156809)
+transform = Transform3D(0.0890428, -0.100375, -0.0415208, -0.106744, -0.0709115, -0.0574893, 0.0201217, 0.068001, -0.121238, 0.730006, 0.51637, 0.156809)
 material_override = SubResource("StandardMaterial3D_k6lof")
 mesh = SubResource("ArrayMesh_ss0lo")
 skeleton = NodePath("")
@@ -1139,7 +1139,7 @@ mesh = SubResource("ArrayMesh_mb68c")
 skeleton = NodePath("")
 
 [node name="sniper_rifle2" type="Node3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x"]
-transform = Transform3D(-3.61999e-07, 0.1, 1.94078e-23, -0.1, -3.61999e-07, 4.44089e-16, 4.44089e-16, 1.58819e-21, 0.1, 0.702983, -0.0542269, -1.52156)
+transform = Transform3D(-3.61999e-07, 0.1, 1.94077e-23, -0.1, -3.61999e-07, 4.44089e-16, 4.44089e-16, 1.58819e-21, 0.1, 0.702983, -0.0542269, -1.52156)
 
 [node name="Empty" type="Node3D" parent="f_t_y/f_t_x/f_t_x_model_group/non_face_x/sniper_rifle2"]
 transform = Transform3D(0, 9.1, 0, 0, 0, -9.1, -9.1, 0, 0, -1.45868, 0, 0)
@@ -1279,10 +1279,10 @@ material_override = SubResource("StandardMaterial3D_n3bo5")
 mesh = SubResource("ArrayMesh_mb68c")
 skeleton = NodePath("")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Detection" type="Area3D" parent="."]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Detection"]
+transform = Transform3D(70, 0, 0, 0, 70, 0, 0, 0, 70, 0, 0, 0)
 shape = SubResource("SphereShape3D_hdms1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1303,5 +1303,5 @@ mesh = SubResource("SphereMesh_k457u")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_i6duh")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="Detection" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_area_3d_body_exited"]

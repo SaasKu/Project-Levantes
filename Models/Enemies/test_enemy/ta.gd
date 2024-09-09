@@ -7,6 +7,7 @@ extends Node3D
 var target : Node3D
 var target_pos
 var enemy
+var can_move = false
 
 var health = 5
 @onready var speed = face_target_y.follow_speed
@@ -23,7 +24,7 @@ func _ready():
 	
 
 func _physics_process(delta):
-	if target:
+	if target and can_move:
 		target_pos = target.global_transform.origin
 		face_target_y.face_point(target_pos, delta)
 		face_target_x.face_point(target_pos, delta)
@@ -55,14 +56,14 @@ func show_happy():
 
 
 func _on_area_3d_body_entered(body):
-	if body.is_in_group("Player") or body == %Player:
+	if body.is_in_group("Player"):
 		target = body
 		print("IN")
 
 
 
 func _on_area_3d_body_exited(body):
-	if body.is_in_group("Player") or body == %Player:
+	if body.is_in_group("Player"):
 		target = null
 		print("OUT")
 		show_happy()
@@ -71,7 +72,7 @@ func _on_area_3d_body_exited(body):
 
 
 func _on_weapons_manager_hit(tar):
-	if tar == enemy:
+	if tar == enemy and can_move:
 		print("HITTTTT")
 		$AudioStreamPlayer3D.play()
 		non_flame_y.hide()
