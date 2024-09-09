@@ -14,6 +14,9 @@ var health = 5
 @onready var f_t_y_shield = $f_t_y/f_t_y_shield
 @onready var non_face_x = $f_t_y/f_t_x/f_t_x_model_group/non_face_x
 @onready var f_t_x_shield = $f_t_y/f_t_x/f_t_x_shield
+
+
+
 func _ready():
 	enemy = $CharacterBody3D
 	pass
@@ -70,6 +73,7 @@ func _on_area_3d_body_exited(body):
 func _on_weapons_manager_hit(tar):
 	if tar == enemy:
 		print("HITTTTT")
+		$AudioStreamPlayer3D.play()
 		non_flame_y.hide()
 		non_face_x.hide()
 		f_t_y_shield.show()
