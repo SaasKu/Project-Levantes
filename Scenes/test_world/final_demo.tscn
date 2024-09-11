@@ -1136,7 +1136,17 @@ data = PackedVector3Array(-37.0955, -0.1518, 40.0199, 38.9045, -0.1518, -35.9789
 albedo_color = Color(0.176471, 0.176471, 0.176471, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_23w36"]
+transparency = 1
 albedo_color = Color(0.303, 2, 1, 1)
+metallic_specular = 1.0
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.317647, 1, 1, 1)
+emission_energy_multiplier = 0.8
+clearcoat_enabled = true
+clearcoat_roughness = 0.54
+backlight_enabled = true
+backlight = Color(0, 1, 0.690196, 1)
 
 [sub_resource type="Animation" id="Animation_od7ww"]
 length = 0.001
@@ -1863,6 +1873,7 @@ skeleton = NodePath("")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="ARENA/main_room/lights"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -84.6076, 68.2168, 131.076)
+layers = 3
 light_color = Color(0.54902, 0.686275, 1, 1)
 light_energy = 2.469
 light_size = 1.695
@@ -1991,6 +2002,7 @@ transform = Transform3D(0.273797, 7.43496, 0, -7.43496, 0.273797, 0, 0, 0, 7.44,
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="ARENA/hallway/lights"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -84.6076, 68.2168, -120.717)
+layers = 3
 light_color = Color(0.54902, 0.686275, 1, 1)
 light_energy = 2.469
 light_size = 1.695
@@ -2141,6 +2153,7 @@ script = ExtResource("8_kmd26")
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="ARENA/enemy_room/lights/ALIEN_LAMP3"]
 transform = Transform3D(-0.0299262, -1.27465, -0.036163, -0.812644, 0.0469397, -0.982004, 0.98267, 3.86529e-09, -0.813195, -0.315481, 0.076726, -0.11425)
+layers = 3
 light_color = Color(0.4, 0.615686, 1, 1)
 light_energy = 8.184
 light_indirect_energy = 0.0
@@ -2288,6 +2301,15 @@ stream = ExtResource("14_dekva")
 volume_db = -11.245
 pitch_scale = 0.6
 max_polyphony = 3
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0581493, 0, -1.66485)
+visible = false
+layers = 2
+light_color = Color(0.356863, 0.607843, 1, 1)
+light_energy = 0.837
+omni_range = 1.391
+omni_attenuation = 0.176777
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_xep3x")

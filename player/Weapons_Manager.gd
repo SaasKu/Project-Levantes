@@ -199,12 +199,14 @@ func _raycast() -> void:
 	var result = space_state.intersect_ray(query)
 	if result:
 		print(screen_center)
-		_test_raycast(result.get("position"))
+		_test_raycast(result.get("position"), origin-endpoint)
 
-func _test_raycast(position: Vector3) -> void:
-	var instance = raycast_test.instantiate()
+func _test_raycast(impact_position: Vector3, raycast_angle: Vector3) -> void:
+	var instance = Raycast_test.new()
+	instance.directionval = raycast_angle
+	instance.impactpoint = impact_position
 	get_tree().root.add_child(instance)
-	instance.global_position = position
+	instance.global_position = impact_position
 	await get_tree().create_timer(1).timeout
 	instance.queue_free()
 	
