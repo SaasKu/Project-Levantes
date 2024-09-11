@@ -7,6 +7,11 @@ func _ready():
 	var sphere = SphereMesh.new()
 	var mat = StandardMaterial3D.new()
 	mat.albedo_color = Color(255,100,0)
+	mat.emission_enabled = true
+	mat.emission = Color(255,100,0)
+	mat.emission_energy_multiplier = 2
+	mat.backlight_enabled = true
+	mat.backlight = Color(255,100,0)
 	sphere.set_height(0.01)
 	sphere.set_radius(0.01)
 	sphere.material = mat

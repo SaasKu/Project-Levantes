@@ -5,6 +5,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3bb8g"]
 albedo_color = Color(1, 1, 0, 1)
+emission_enabled = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_l127o"]
 material = SubResource("StandardMaterial3D_3bb8g")
@@ -44,7 +45,6 @@ draw_order = 2
 mesh = SubResource("CapsuleMesh_l127o")
 emission_shape = 1
 emission_sphere_radius = 4.92
-emission_colors = PackedColorArray(1, 0.380392, 0, 1, 1, 0.729412, 0, 1)
 initial_velocity_max = 40.81
 color = Color(1, 1, 0, 1)
 color_ramp = SubResource("Gradient_sd062")

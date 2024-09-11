@@ -1,6 +1,6 @@
 extends Node3D
 
-
+@onready var rng = RandomNumberGenerator.new()
 @onready var face_target_y = $f_t_y
 @onready var face_target_x = $f_t_y/f_t_x
 @onready var Animation_Player = get_node("AnimationPlayer")
@@ -10,7 +10,8 @@ var enemy
 var can_move = false
 
 var health = 5
-@onready var speed = face_target_y.follow_speed
+#@onready var speed = face_target_y.follow_speed
+@onready var speed = rng.randf_range(0.02,0.05)
 @onready var non_flame_y = $f_t_y/f_t_y_model_group/non_flame_y
 @onready var f_t_y_shield = $f_t_y/f_t_y_shield
 @onready var non_face_x = $f_t_y/f_t_x/f_t_x_model_group/non_face_x
@@ -19,6 +20,7 @@ var health = 5
 
 
 func _ready():
+	speed = rng.randf_range(0.02,0.05)
 	enemy = $CharacterBody3D
 	pass
 	

@@ -1,10 +1,13 @@
-[gd_scene load_steps=20 format=3 uid="uid://dwkxlbr2q60nh"]
+[gd_scene load_steps=23 format=3 uid="uid://dwkxlbr2q60nh"]
 
 [ext_resource type="Script" path="res://Scenes/test_world/test_world.gd" id="1_u8l0d"]
 [ext_resource type="PackedScene" uid="uid://cfde4dumfslig" path="res://player/player.tscn" id="2_pibag"]
 [ext_resource type="ArrayMesh" uid="uid://bpv0vse6jqelh" path="res://Models/Weapons/smg/smg_obj_var.obj" id="3_2irf5"]
 [ext_resource type="PackedScene" uid="uid://cs0cwmm66yb5f" path="res://Models/Weapons/smg/smg_of_the_future.gltf" id="4_hm3t6"]
 [ext_resource type="PackedScene" uid="uid://dfaprawobuuvd" path="res://Models/Enemies/test_enemy/test_enemy.tscn" id="5_pr0kc"]
+[ext_resource type="PackedScene" uid="uid://dycrppyyvnj7b" path="res://Models/Weapons/spawnable_weapons/sp_burst_rifle.tscn" id="6_uufha"]
+[ext_resource type="PackedScene" uid="uid://w1j3noycv2xt" path="res://Models/Weapons/spawnable_weapons/sp_sniper_rifle.tscn" id="7_tls7q"]
+[ext_resource type="PackedScene" uid="uid://bi170mgn206nk" path="res://Models/Weapons/spawnable_weapons/sp_smg_of_the_future.tscn" id="8_mftr2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p6h5i"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -25,8 +28,6 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_l3qo8"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_4ouyv"]
-vertices = PackedVector3Array(-90.3186, 0.33532, -7.23399, -2.3186, 0.33532, -7.23399, -2.3186, 0.33532, -9.23399, -90.3186, 0.33532, -7.23399, -2.3186, 0.33532, -9.23399, -0.0686035, 0.33532, -9.48399, -0.0686035, 0.33532, -129.984, -90.3186, 0.33532, -129.984, 16.9314, 0.33532, -0.983994, 17.1814, 0.33532, 0.266006, 18.6814, 0.33532, 0.266006, 18.6814, 0.33532, -5.73399, 2.1814, 0.33532, -9.23399, 18.6814, 0.33532, -5.73399, 19.9314, 0.33532, -5.98399, 19.9314, 0.33532, -129.984, -0.0686035, 0.33532, -129.984, 1.6814, 0.33532, -4.98399, 5.9314, 0.33532, -0.483994, 6.1814, 0.33532, -0.983994, 2.1814, 0.33532, -5.23399, -0.0686035, 0.33532, -129.984, -0.0686035, 0.33532, -9.48399, 2.1814, 0.33532, -9.23399, 2.1814, 0.33532, -9.23399, 2.1814, 0.33532, -5.23399, 6.1814, 0.33532, -0.983994, 16.9314, 0.33532, -0.983994, 18.6814, 0.33532, -5.73399, 20.9314, 0.33532, -5.73399, 20.9314, 0.33532, -3.73399, 90.4314, 0.33532, -3.73399, 19.9314, 0.33532, -5.98399, 20.9314, 0.33532, -5.73399, 90.4314, 0.33532, -3.73399, 90.4314, 0.33532, -129.984, 19.9314, 0.33532, -129.984, -1.3186, 3.58532, -8.48399, -1.3186, 3.58532, -5.98399, 1.1814, 3.58532, -5.98399, 1.1814, 3.58532, -8.48399, -1.0686, 0.33532, -8.23399, -1.0686, 0.33532, -6.23399, 0.931396, 0.33532, -6.23399, 0.931396, 0.33532, -8.23399, 18.6814, 0.33532, 0.266006, 17.1814, 0.33532, 0.266006, 16.9314, 0.33532, 1.26601, 18.6814, 0.33532, 16.016, 6.1814, 0.33532, 1.26601, 5.9314, 0.33532, -0.483994, 1.6814, 0.33532, -4.98399, -2.0686, 0.33532, -4.98399, 19.6814, 0.33532, 16.266, 18.6814, 0.33532, 16.016, -90.3186, 0.33532, -7.23399, -90.3186, 0.33532, 130.016, 19.6814, 0.33532, 130.016, -2.0686, 0.33532, -4.98399, -2.3186, 0.33532, -7.23399, -90.3186, 0.33532, -7.23399, 18.6814, 0.33532, 16.016, 16.9314, 0.33532, 1.26601, 6.1814, 0.33532, 1.26601, 18.6814, 0.33532, 16.016, 6.1814, 0.33532, 1.26601, -2.0686, 0.33532, -4.98399, -90.3186, 0.33532, -7.23399, 20.9314, 0.33532, 14.016, 90.4314, 0.33532, 14.016, 90.4314, 0.33532, -3.73399, 20.9314, 0.33532, -3.73399, 90.4314, 0.33532, 14.016, 20.9314, 0.33532, 14.016, 20.9314, 0.33532, 16.016, 90.4314, 0.33532, 14.016, 20.9314, 0.33532, 16.016, 19.6814, 0.33532, 16.266, 19.6814, 0.33532, 130.016, 90.4314, 0.33532, 130.016)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 16), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(23, 22, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(27, 24, 28), PackedInt32Array(31, 30, 29), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 36), PackedInt32Array(34, 36, 35), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(44, 43, 41), PackedInt32Array(41, 43, 42), PackedInt32Array(46, 45, 47), PackedInt32Array(47, 45, 48), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(54, 53, 55), PackedInt32Array(55, 53, 57), PackedInt32Array(55, 57, 56), PackedInt32Array(60, 59, 58), PackedInt32Array(63, 62, 61), PackedInt32Array(65, 64, 66), PackedInt32Array(66, 64, 67), PackedInt32Array(71, 70, 68), PackedInt32Array(68, 70, 69), PackedInt32Array(74, 73, 72), PackedInt32Array(76, 75, 77), PackedInt32Array(77, 75, 78), PackedInt32Array(78, 75, 79)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_io3ih"]
 
@@ -55,13 +56,13 @@ environment = SubResource("Environment_tsyuw")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 5.26269, 0)
 shadow_enabled = true
 
-[node name="Player" type="Node" parent="."]
+[node name="the_player" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="plr" type="Node3D" parent="Player"]
+[node name="plr" type="Node3D" parent="the_player"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="CharacterBody3D" parent="Player/plr" instance=ExtResource("2_pibag")]
+[node name="CharacterBody3D" parent="the_player/plr" groups=["Player"] instance=ExtResource("2_pibag")]
 
 [node name="SmgObjVar" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -25.032, 8.02512, 21.9947)
@@ -119,4 +120,20 @@ skeleton = NodePath("../../..")
 shape = SubResource("BoxShape3D_4y614")
 
 [node name="TestEnemy" parent="." instance=ExtResource("5_pr0kc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0441551, 1.4881, 15.5704)
+transform = Transform3D(-0.768496, 0, -0.639855, 0, 1, 0, 0.639855, 0, -0.768496, 1.46144, 5.02184, 29.0055)
+
+[node name="pickup_test" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.10643)
+
+[node name="burst_rifle" parent="pickup_test" instance=ExtResource("6_uufha")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.362833, 0)
+
+[node name="pickup_test_sniper_rifle" type="Node3D" parent="."]
+
+[node name="SpSniperRifle" parent="pickup_test_sniper_rifle" instance=ExtResource("7_tls7q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.29277, 0.28321, 38.4209)
+
+[node name="SmgOfTheFuture" parent="." instance=ExtResource("8_mftr2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93278, 0.258227, 34.1584)
+
+[editable path="TestEnemy"]

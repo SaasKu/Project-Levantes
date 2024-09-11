@@ -4,6 +4,7 @@ extends Resource
 class_name Weapon_Resource
 
 @export var Wep_Name: String
+@export var Wep_Display_Name: String
 @export var Equip_Ani: String
 @export var Fire_Ani: String
 @export var Reload_Ani: String
@@ -26,3 +27,5 @@ class_name Weapon_Resource
 @export_flags("HitScan","Projectile") var Type
 @export var Projectile_Range: float
 @export var dmg: int
+
+@export var Weapon_Drop: PackedScene

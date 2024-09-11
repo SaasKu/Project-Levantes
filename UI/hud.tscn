@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dssfcs6qgya2v"]
+[gd_scene load_steps=4 format=3 uid="uid://dssfcs6qgya2v"]
 
+[ext_resource type="Script" path="res://UI/hud.gd" id="1_kroww"]
 [ext_resource type="FontFile" uid="uid://dn1ewphq0hlak" path="res://UI/Fonts/TitilliumWeb-SemiBold.ttf" id="1_xg4as"]
 [ext_resource type="Script" path="res://UI/hud_scripts/hud_updates.gd" id="2_bm6h5"]
 
@@ -10,108 +11,146 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kroww")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="weapons_info" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -215.0
+offset_left = -283.0
 offset_bottom = 74.0
 grow_horizontal = 0
-color = Color(0, 0.807843, 0.721569, 0.592157)
+color = Color(0.156863, 0.556863, 0.6, 1)
 
-[node name="Wep1" type="Label" parent="ColorRect"]
+[node name="Wep1" type="Control" parent="weapons_info"]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = -1.0
+offset_right = 247.0
+offset_bottom = 39.0
+
+[node name="Wep1_Indicator" type="ColorRect" parent="weapons_info/Wep1"]
+layout_mode = 0
+offset_left = -27.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 36.0
+color = Color(0.615686, 0.945098, 0.909804, 0.67451)
+
+[node name="w_text" type="Label" parent="weapons_info/Wep1"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 17.0
+offset_left = -27.0
 offset_top = 5.0
-offset_right = 112.0
+offset_right = 105.0
 offset_bottom = 36.0
 theme_override_fonts/font = ExtResource("1_xg4as")
 theme_override_font_sizes/font_size = 20
 text = "Weapon1:
 "
+horizontal_alignment = 1
 
-[node name="Mag1" type="Label" parent="ColorRect/Wep1"]
+[node name="Mag" type="Label" parent="weapons_info/Wep1"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 99.0
-offset_top = 1.0
-offset_right = 134.0
-offset_bottom = 32.0
+offset_left = 116.0
+offset_top = 6.0
+offset_right = 151.0
+offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("1_xg4as")
 theme_override_font_sizes/font_size = 20
 text = "000"
+horizontal_alignment = 2
 
-[node name="Div1" type="Label" parent="ColorRect/Wep1"]
+[node name="Div" type="Label" parent="weapons_info/Wep1"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 138.0
-offset_top = 1.0
-offset_right = 173.0
-offset_bottom = 32.0
+offset_left = 155.0
+offset_top = 6.0
+offset_right = 190.0
+offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("1_xg4as")
 theme_override_font_sizes/font_size = 20
 text = "/
 "
 
-[node name="Reserve1" type="Label" parent="ColorRect/Wep1"]
+[node name="Reserve" type="Label" parent="weapons_info/Wep1"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 152.0
-offset_top = 1.0
-offset_right = 187.0
-offset_bottom = 32.0
+offset_left = 169.0
+offset_top = 6.0
+offset_right = 204.0
+offset_bottom = 37.0
 theme_override_fonts/font = ExtResource("1_xg4as")
 theme_override_font_sizes/font_size = 20
 text = "000"
+horizontal_alignment = 2
 
-[node name="Wep2" type="Label" parent="ColorRect"]
+[node name="Wep2" type="Control" parent="weapons_info"]
+anchors_preset = 0
+offset_left = 32.0
+offset_top = -1.0
+offset_right = 72.0
+offset_bottom = 39.0
+
+[node name="Wep2_Indicator" type="ColorRect" parent="weapons_info/Wep2"]
+visible = false
+layout_mode = 0
+offset_left = -27.0
+offset_top = 36.0
+offset_right = 105.0
+offset_bottom = 67.0
+color = Color(0.615686, 0.945098, 0.909804, 0.67451)
+
+[node name="w_2_text" type="Label" parent="weapons_info/Wep2"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 18.0
+offset_left = -27.0
 offset_top = 36.0
-offset_right = 111.0
+offset_right = 105.0
 offset_bottom = 67.0
 theme_override_fonts/font = ExtResource("1_xg4as")
 theme_override_font_sizes/font_size = 20
 text = "Weapon2:
 "
+horizontal_alignment = 1
 
-[node name="Mag2" type="Label" parent="ColorRect/Wep2"]
+[node name="Mag2" type="Label" parent="weapons_info/Wep2"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 98.0
-offset_top = 1.0
-offset_right = 133.0
-offset_bottom = 32.0
+offset_left = 116.0
+offset_top = 37.0
+offset_right = 151.0
+offset_bottom = 68.0
 theme_override_fonts/font = ExtResource("1_xg4as")
 theme_override_font_sizes/font_size = 20
 text = "000"
+horizontal_alignment = 2
 
-[node name="Div2" type="Label" parent="ColorRect/Wep2"]
+[node name="Div2" type="Label" parent="weapons_info/Wep2"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 137.0
-offset_top = 1.0
-offset_right = 172.0
-offset_bottom = 32.0
+offset_left = 155.0
+offset_top = 37.0
+offset_right = 190.0
+offset_bottom = 68.0
 theme_override_fonts/font = ExtResource("1_xg4as")
 theme_override_font_sizes/font_size = 20
 text = "/
 "
 
-[node name="Reserve2" type="Label" parent="ColorRect/Wep2"]
+[node name="Reserve2" type="Label" parent="weapons_info/Wep2"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 151.0
-offset_top = 1.0
-offset_right = 186.0
-offset_bottom = 32.0
+offset_left = 169.0
+offset_top = 37.0
+offset_right = 204.0
+offset_bottom = 68.0
 theme_override_fonts/font = ExtResource("1_xg4as")
 theme_override_font_sizes/font_size = 20
 text = "000"
+horizontal_alignment = 2
 
 [node name="Reticle" type="CenterContainer" parent="."]
 layout_mode = 1

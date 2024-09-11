@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=2 format=3 uid="uid://bxeiwh54b4ilj"]
+[gd_resource type="Resource" script_class="Weapon_Resource" load_steps=3 format=3 uid="uid://bxeiwh54b4ilj"]
 
+[ext_resource type="PackedScene" uid="uid://bi170mgn206nk" path="res://Models/Weapons/spawnable_weapons/sp_smg_of_the_future.tscn" id="1_t8ctc"]
 [ext_resource type="Script" path="res://Models/Weapons/weapon_resource.gd" id="1_w8eg2"]
 
 [resource]
 script = ExtResource("1_w8eg2")
 Wep_Name = "smgModel"
+Wep_Display_Name = "HH-50"
 Equip_Ani = "smg_equip"
 Fire_Ani = "smg_fire"
 Reload_Ani = "smg_reload"
@@ -23,3 +25,4 @@ Is_Reloading = false
 Type = 1
 Projectile_Range = 100000.0
 dmg = 1
+Weapon_Drop = ExtResource("1_t8ctc")
