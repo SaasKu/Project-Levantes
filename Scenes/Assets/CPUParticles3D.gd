@@ -6,7 +6,7 @@ func _ready():
 	self.direction = self.direction.bounce(impactpoint.normalized())
 	var sphere = SphereMesh.new()
 	var mat = StandardMaterial3D.new()
-	mat.albedo_color = Color(255,255,0)
+	mat.albedo_color = Color(255,100,0)
 	sphere.set_height(0.01)
 	sphere.set_radius(0.01)
 	sphere.material = mat

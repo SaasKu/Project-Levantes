@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://b1o8045la0x6s"]
+[gd_scene load_steps=133 format=3 uid="uid://b1o8045la0x6s"]
 
 [ext_resource type="Script" path="res://Scenes/test_world/final_demo.gd" id="1_n2tlg"]
 [ext_resource type="Texture2D" uid="uid://cxxcdukvgnoqo" path="res://world_objects/ARENA_arenawall.png" id="1_y5xmo"]
@@ -1782,6 +1782,12 @@ _data = {
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gjjp"]
 albedo_color = Color(0, 1.5, 4.012, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdfgc"]
+albedo_color = Color(0.411765, 1, 0.745098, 1)
+emission_enabled = true
+emission = Color(0, 0.643137, 1, 1)
+emission_energy_multiplier = 1.55
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_awmrn"]
 albedo_color = Color(0, 0, 0, 1)
 
@@ -2256,11 +2262,6 @@ material_override = SubResource("StandardMaterial3D_x0cc2")
 transform = Transform3D(1, -1.19209e-07, -1.6009e-08, 1.89652e-09, -1.30659e-08, -1, 0, 1, 3.7152e-08, 1.03275, -2.43264, 9.71132)
 material_override = SubResource("StandardMaterial3D_23w36")
 
-[node name="SMGRay" type="RayCast3D" parent="Player/Head/Camera3D/Weapons_Manager/WeaponRig/smgModel"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.8339)
-target_position = Vector3(-10, 5, -200)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Player/Head/Camera3D/Weapons_Manager/WeaponRig/smgModel"]
 transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
 light_color = Color(1, 0.541176, 0.227451, 1)
@@ -2288,6 +2289,7 @@ material_override = SubResource("StandardMaterial3D_8gjjp")
 [node name="Cylinder_001" parent="Player/Head/Camera3D/Weapons_Manager/WeaponRig/burst_rifle" index="2"]
 transform = Transform3D(1, 2.48108e-13, -8.98149e-19, 0, -3.9501e-06, -1.09119, -2.27374e-13, 1.09119, -3.9501e-06, 1.59222, -3.40636, 23.3421)
 material_override = SubResource("StandardMaterial3D_8gjjp")
+surface_material_override/0 = SubResource("StandardMaterial3D_sdfgc")
 
 [node name="Cylinder_003" parent="Player/Head/Camera3D/Weapons_Manager/WeaponRig/burst_rifle" index="4"]
 material_override = SubResource("StandardMaterial3D_awmrn")
@@ -2296,9 +2298,14 @@ material_override = SubResource("StandardMaterial3D_awmrn")
 transform = Transform3D(1, 6.82121e-13, 0, 0, 0, -1.09119, -4.54747e-13, 1.09119, 0, 8.8872, 0.759834, 25.3597)
 material_override = SubResource("StandardMaterial3D_g7ibg")
 
+[node name="SMGRay" type="RayCast3D" parent="Player/Head/Camera3D/Weapons_Manager/WeaponRig"]
+unique_name_in_owner = true
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0.384012, -0.13917, -1.47034)
+target_position = Vector3(-10, 5, -200)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Player/Head/Camera3D/Weapons_Manager"]
 stream = ExtResource("14_dekva")
-volume_db = -11.245
+volume_db = -14.081
 pitch_scale = 0.6
 max_polyphony = 3
 

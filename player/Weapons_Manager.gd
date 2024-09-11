@@ -111,6 +111,9 @@ func fire_Wep():
 							#await Animation_Player.animation_finished
 						Animation_Player.play(Current_Weapon.Fire_Ani)
 						$AudioStreamPlayer.play()
+						if $WeaponRig/SMGRay.is_colliding():
+							emit_signal("hit", $WeaponRig/SMGRay.get_collider())
+							print($WeaponRig/SMGRay.get_collider())
 						_raycast()
 						print(str(Current_Weapon.Curr_Mag_Ammo) + "\n")
 						Current_Weapon.Curr_Mag_Ammo -= 1
@@ -143,9 +146,9 @@ func fire_Wep():
 					while Input.is_action_pressed("Shoot") and Current_Weapon.Curr_Mag_Ammo != 0 and Animation_Player.get_current_animation() != Current_Weapon.Reload_Ani:
 						Animation_Player.play(Current_Weapon.Fire_Ani)
 						$AudioStreamPlayer.play()
-						if $WeaponRig/smgModel/SMGRay.is_colliding():
-							emit_signal("hit", $WeaponRig/smgModel/SMGRay.get_collider())
-							print($WeaponRig/smgModel/SMGRay.get_collider())
+						if $WeaponRig/SMGRay.is_colliding():
+							emit_signal("hit", $WeaponRig/SMGRay.get_collider())
+							print($WeaponRig/SMGRay.get_collider())
 						_raycast()
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished
@@ -199,9 +202,9 @@ func _raycast() -> void:
 	var result = space_state.intersect_ray(query)
 	if result:
 		print(screen_center)
-		_test_raycast(result.get("position"), origin-endpoint)
+		make_spark(result.get("position"), origin-endpoint)
 
-func _test_raycast(impact_position: Vector3, raycast_angle: Vector3) -> void:
+func make_spark(impact_position: Vector3, raycast_angle: Vector3) -> void:
 	var instance = Raycast_test.new()
 	instance.directionval = raycast_angle
 	instance.impactpoint = impact_position
