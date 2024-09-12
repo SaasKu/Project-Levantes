@@ -1046,6 +1046,7 @@ turn_speed = 145
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.38834, 0)
 
 [node name="non_flame_y" type="Node3D" parent="f_t_y/f_t_y_model_group"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49199, 0)
 
 [node name="Cylinder_002" type="MeshInstance3D" parent="f_t_y/f_t_y_model_group/non_flame_y"]
 transform = Transform3D(0.0574783, 0, 0.0697937, 0, 0.0904153, 0, -0.0697937, 0, 0.0574783, 1.00461e-10, 0.67669, 0.00229833)
@@ -1060,18 +1061,19 @@ mesh = SubResource("ArrayMesh_d1cnq")
 skeleton = NodePath("")
 
 [node name="Mellow_Flame" type="MeshInstance3D" parent="f_t_y/f_t_y_model_group"]
-transform = Transform3D(0.0495611, 0, 0.0601802, 0, 0.0779612, 0, -0.0601802, 0, 0.0495611, 1.00461e-10, 0.681318, 0.00229833)
+transform = Transform3D(0.0495611, 0, 0.0601802, 0, 0.0779612, 0, -0.0601802, 0, 0.0495611, 1.00461e-10, 2.17331, 0.00229833)
 material_override = SubResource("StandardMaterial3D_t57dd")
 mesh = SubResource("ArrayMesh_mcumk")
 skeleton = NodePath("")
 
 [node name="Angry_Flame" type="MeshInstance3D" parent="f_t_y/f_t_y_model_group"]
-transform = Transform3D(0.0495611, 0, 0.0601802, 0, 0.0779612, 0, -0.0601802, 0, 0.0495611, 1.00461e-10, 0.681318, 0.00229833)
+transform = Transform3D(0.0495611, 0, 0.0601802, 0, 0.0779612, 0, -0.0601802, 0, 0.0495611, 1.00461e-10, 2.17331, 0.00229833)
 material_override = SubResource("StandardMaterial3D_athhb")
 mesh = SubResource("ArrayMesh_mcumk")
 skeleton = NodePath("")
 
 [node name="f_t_y_shield" type="Node3D" parent="f_t_y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49199, 0)
 visible = false
 
 [node name="Cylinder_002" type="MeshInstance3D" parent="f_t_y/f_t_y_shield"]
