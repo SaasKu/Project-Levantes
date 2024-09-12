@@ -16,7 +16,7 @@ var health = 5
 @onready var f_t_y_shield = $f_t_y/f_t_y_shield
 @onready var non_face_x = $f_t_y/f_t_x/f_t_x_model_group/non_face_x
 @onready var f_t_x_shield = $f_t_y/f_t_x/f_t_x_shield
-
+var in_chase = false
 
 
 func _ready():
@@ -32,8 +32,9 @@ func _physics_process(delta):
 		face_target_x.face_point(target_pos, delta)
 		if face_target_y.is_facing_target(target_pos) and face_target_x.is_facing_target(target_pos):
 			show_angry()
-			var velocity = position.direction_to(target.position) * speed
-			self.position += velocity
+			if in_chase:
+				var velocity = position.direction_to(target.position) * speed
+				self.position += velocity
 		else:
 			show_happy()
 		 # Reset z-axis rotation
@@ -57,21 +58,6 @@ func show_happy():
 
 
 
-func _on_area_3d_body_entered(body):
-	if body.is_in_group("Player"):
-		target = body
-		print("IN")
-
-
-
-func _on_area_3d_body_exited(body):
-	if body.is_in_group("Player"):
-		target = null
-		print("OUT")
-		show_happy()
-		
-
-
 
 func _on_weapons_manager_hit(tar):
 	if tar == enemy and can_move:
@@ -93,4 +79,37 @@ func _on_weapons_manager_hit(tar):
 			await Animation_Player.animation_finished
 			$".".queue_free()
 	
+	pass # Replace with function body.
+
+
+func _on_chase_body_entered(body):
+	if body.is_in_group("Player"):
+		in_chase = true
+		target = body
+		print("IN")
+	pass # Replace with function body.
+
+
+func _on_chase_body_exited(body):
+	if body.is_in_group("Player"):
+		in_chase = false
+		target = null
+		print("OUT")
+		show_happy()
+	pass # Replace with function body.
+	
+	
+
+
+func _on_chill_body_entered(body):
+	if body.is_in_group("Player"):
+		in_chase = false
+		print("CHILL IN")
+	pass # Replace with function body.
+
+
+func _on_chill_body_exited(body):
+	if body.is_in_group("Player"):
+		in_chase = true
+		print("CHILL OUT")
 	pass # Replace with function body.
