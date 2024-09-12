@@ -8,6 +8,7 @@ var target : Node3D
 var target_pos
 var enemy
 var can_move = false
+var in_chill = false
 
 var health = 5
 #@onready var speed = face_target_y.follow_speed
@@ -35,6 +36,9 @@ func _physics_process(delta):
 			if in_chase:
 				var velocity = position.direction_to(target.position) * speed
 				self.position += velocity
+			else:
+				var velocity = position.direction_to(target.position) * speed
+				self.position -= velocity
 		else:
 			show_happy()
 		 # Reset z-axis rotation
@@ -83,7 +87,7 @@ func _on_weapons_manager_hit(tar):
 
 
 func _on_chase_body_entered(body):
-	if body.is_in_group("Player"):
+	if !in_chill and body.is_in_group("Player"):
 		in_chase = true
 		target = body
 		print("IN")
@@ -91,11 +95,14 @@ func _on_chase_body_entered(body):
 
 
 func _on_chase_body_exited(body):
-	if body.is_in_group("Player"):
+	if !in_chill and body.is_in_group("Player"):
 		in_chase = false
 		target = null
 		print("OUT")
 		show_happy()
+	elif in_chill and body.is_in_group("Player"):
+		in_chase = true
+		target= body
 	pass # Replace with function body.
 	
 	
@@ -104,12 +111,13 @@ func _on_chase_body_exited(body):
 func _on_chill_body_entered(body):
 	if body.is_in_group("Player"):
 		in_chase = false
+		in_chill = true
 		print("CHILL IN")
 	pass # Replace with function body.
 
 
-func _on_chill_body_exited(body):
-	if body.is_in_group("Player"):
-		in_chase = true
-		print("CHILL OUT")
-	pass # Replace with function body.
+#func _on_chill_body_exited(body):
+	#if body.is_in_group("Player"):
+		#in_chase = true
+		#print("CHILL OUT")
+	#pass # Replace with function body.
