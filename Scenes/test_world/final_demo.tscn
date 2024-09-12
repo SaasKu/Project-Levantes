@@ -1969,7 +1969,7 @@ metallic = 1.0
 script = ExtResource("1_n2tlg")
 
 [node name="ARENA" type="Node3D" parent="."]
-transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 4.26217, 0, -6.34791)
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 4.26217, 0, -6.34791)
 
 [node name="main_room" type="Node3D" parent="ARENA"]
 
@@ -2324,7 +2324,7 @@ light_size = 5.94
 omni_range = 7.458
 
 [node name="ALIEN_LAMP3" type="Node3D" parent="ARENA/enemy_room/lights"]
-transform = Transform3D(-0.367886, -9.98993, 12.0801, -15.6694, 0.577036, 0, -0.444556, -12.0719, -9.99671, 258.653, 108.635, -123.055)
+transform = Transform3D(-0.267233, -7.25672, 8.77501, 11.3354, -1.00275, -0.48404, 1.08092, 8.72162, 7.24548, 247.235, 12.817, -131.043)
 script = ExtResource("8_kmd26")
 
 [node name="Sphere" type="MeshInstance3D" parent="ARENA/enemy_room/lights/ALIEN_LAMP3"]
@@ -2352,7 +2352,7 @@ transform = Transform3D(2.04, -4.5934e-16, -6.62755e-09, 0, 2.04, -1.41388e-07, 
 physics_material_override = SubResource("PhysicsMaterial_m24bl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ARENA/enemy_room/lights/ALIEN_LAMP3/StaticBody3D"]
-transform = Transform3D(1.275, -2.37487e-09, 0, 2.37487e-09, 1.275, 0, 0, 0, 1.275, 0, 0, 0)
+transform = Transform3D(1.34, -2.49594e-09, 0, 2.49594e-09, 1.34, 0, 0, 0, 1.34, 0, 0, 0)
 shape = SubResource("SphereShape3D_uy57k")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ARENA/enemy_room/lights/ALIEN_LAMP3"]
@@ -2360,7 +2360,7 @@ stream = ExtResource("9_lqjul")
 
 [node name="Player" type="CharacterBody3D" parent="." groups=["Player"]]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.20144, -1.39707)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.59143, 1.20144, 5.81954)
 script = ExtResource("6_s2t5h")
 HEADBOB_SWAY_AMOUNT = 0.01
 
@@ -2413,6 +2413,7 @@ render_target_update_mode = 4
 [node name="GunCam" type="Camera3D" parent="Player/Head/Camera3D/SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11218, 0)
 cull_mask = 1047554
+current = true
 
 [node name="Weapons_Manager" type="Node3D" parent="Player/Head/Camera3D"]
 unique_name_in_owner = true
@@ -2521,25 +2522,25 @@ stream = ExtResource("19_h6wki")
 volume_db = -1.581
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.998
+wait_time = 1.515
 one_shot = true
 
 [node name="Enemies" type="Node3D" parent="."]
 
 [node name="TestEnemy_2" parent="Enemies" instance=ExtResource("22_loyvs")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7966, 1.115, -18.5957)
+transform = Transform3D(-0.953738, 0, 0.300639, 0, 1, 0, -0.300639, 0, -0.953738, 24.5121, 1.115, -20.6053)
 
 [node name="TestEnemy_3" parent="Enemies" instance=ExtResource("22_loyvs")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7966, 1.115, -15.6073)
+transform = Transform3D(-0.799097, 0, -0.601201, 0, 1, 0, 0.601201, 0, -0.799097, 20.9709, 1.115, -20.5016)
 
 [node name="TestEnemy_4" parent="Enemies" instance=ExtResource("22_loyvs")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7966, 1.115, -11.982)
+transform = Transform3D(-0.378729, 0, 0.925507, 0, 1, 0, -0.925507, 0, -0.378729, 26.8232, 1.115, -17.158)
 
 [node name="TestEnemy_5" parent="Enemies" instance=ExtResource("22_loyvs")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7966, 1.115, -8.7951)
+transform = Transform3D(0.927053, 0, 0.37493, 0, 1, 0, -0.37493, 0, 0.927053, 24.2892, 1.115, -12.8428)
 
 [node name="TestEnemy_6" parent="Enemies" instance=ExtResource("22_loyvs")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.7966, 1.115, -5.85922)
+transform = Transform3D(0.987762, 0, 0.155969, 0, 1, 0, -0.155969, 0, 0.987762, 21.6815, 1.115, -12.2861)
 
 [connection signal="glass_broken" from="ARENA/enemy_room/lights/ALIEN_LAMP3" to="." method="_on_glass_broken"]
 [connection signal="hit" from="Player/Head/Camera3D/Weapons_Manager" to="ARENA/enemy_room/lights/ALIEN_LAMP3" method="_on_hit"]
