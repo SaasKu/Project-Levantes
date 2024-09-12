@@ -50,7 +50,8 @@ func _input(event):
 		hide_wep(Current_Weapon.Wep_Name)
 		
 	if event.is_action_pressed("Weapon_Switch"):
-		if Weapon_Stack.size() > 1:
+		var cur_anim = Animation_Player.get_current_animation()
+		if cur_anim != Current_Weapon.Dequip_Ani and Weapon_Stack.size() > 1:
 			Weapon_Indicator = !Weapon_Indicator
 			exit(Weapon_Stack[Weapon_Indicator], false)
 	if event.is_action_pressed("Shoot"):
@@ -209,7 +210,8 @@ func fire_Wep():
 							#await Animation_Player.animation_finished
 					Current_Weapon.Is_Waiting = true
 					Animation_Player.play(Current_Weapon.Wait_Ani)
-					await Animation_Player.animation_finished
+					#await Animation_Player.animation_finished
+					await get_tree().create_timer(Current_Weapon.Wait_Interval).timeout
 					Current_Weapon.Is_Waiting = false
 			elif cur_mag_ammo != 0:
 				for i in range(0, cur_mag_ammo):
