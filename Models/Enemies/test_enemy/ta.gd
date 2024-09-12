@@ -9,7 +9,7 @@ var target_pos
 var enemy
 var can_move = false
 
-var health = 5
+var health = 10
 #@onready var speed = face_target_y.follow_speed
 @onready var speed = rng.randf_range(0.02,0.05)
 @onready var non_flame_y = $f_t_y/f_t_y_model_group/non_flame_y
