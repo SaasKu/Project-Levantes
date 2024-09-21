@@ -16,4 +16,4 @@ layers = 2
 mesh = SubResource("CapsuleMesh_o6ry8")
 
 [node name="Node3D" parent="." instance=ExtResource("1_i5wqx")]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0.611519, 0.900194, -0.835708)
+transform = Transform3D(0.011, 0, 0, 0, 0.011, 0, 0, 0, 0.011, 0.611519, 0.900194, -0.835708)
