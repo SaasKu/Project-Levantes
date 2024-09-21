@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2ipjyem2oaxa"]
+
+[ext_resource type="PackedScene" uid="uid://dqmr7sn8r3aiv" path="res://Models/Weapons/shotgun/shotgun.tscn" id="1_i5wqx"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o6ry8"]
+
+[node name="Smt" type="Node3D"]
+
+[node name="WorldModel" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0138981, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldModel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+layers = 2
+mesh = SubResource("CapsuleMesh_o6ry8")
+
+[node name="Node3D" parent="." instance=ExtResource("1_i5wqx")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0.611519, 0.900194, -0.835708)
