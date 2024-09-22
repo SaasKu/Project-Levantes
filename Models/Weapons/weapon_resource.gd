@@ -29,3 +29,6 @@ class_name Weapon_Resource
 @export var dmg: int
 
 @export var Weapon_Drop: PackedScene
+
+@export var ray_path: String
+@export var light_path: String

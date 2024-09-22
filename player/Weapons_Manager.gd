@@ -107,7 +107,7 @@ func Initialize(_Starting_Weaps: Array):
 		Weapon_Stack.push_back(s_weps)
 		
 	
-	hud = $"../../../HUD"
+	hud = $"../HUD"
 	
 
 	hud.hud_initialize(Weapon_Stack, Weapon_List)
@@ -198,9 +198,9 @@ func fire_Wep():
 							#await Animation_Player.animation_finished
 						Animation_Player.play(Current_Weapon.Fire_Ani)
 						$AudioStreamPlayer.play()
-						if $WeaponRig/SMGRay.is_colliding():
-							emit_signal("hit", $WeaponRig/SMGRay.get_collider())
-							print($WeaponRig/SMGRay.get_collider())
+						if %Ray.is_colliding():
+							emit_signal("hit", %Ray.get_collider())
+							print(%Ray.get_collider())
 						_raycast()
 						print(str(Current_Weapon.Curr_Mag_Ammo) + "\n")
 						Current_Weapon.Curr_Mag_Ammo -= 1
@@ -230,9 +230,9 @@ func fire_Wep():
 					while Input.is_action_pressed("Shoot") and Current_Weapon.Curr_Mag_Ammo != 0 and Animation_Player.get_current_animation() != Current_Weapon.Reload_Ani:
 						Animation_Player.play(Current_Weapon.Fire_Ani)
 						$AudioStreamPlayer.play()
-						if $WeaponRig/SMGRay.is_colliding():
-							emit_signal("hit", $WeaponRig/SMGRay.get_collider())
-							print($WeaponRig/SMGRay.get_collider())
+						if %Ray.is_colliding():
+							emit_signal("hit", %Ray.get_collider())
+							print(%Ray.get_collider())
 						_raycast()
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished

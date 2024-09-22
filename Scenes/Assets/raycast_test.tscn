@@ -9,8 +9,8 @@ emission_enabled = true
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_l127o"]
 material = SubResource("StandardMaterial3D_3bb8g")
-radius = 0.1
-height = 0.2
+radius = 10.0
+height = 20.0
 radial_segments = 4
 rings = 1
 

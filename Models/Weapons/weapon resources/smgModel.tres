@@ -26,3 +26,5 @@ Type = 1
 Projectile_Range = 100000.0
 dmg = 1
 Weapon_Drop = ExtResource("1_t8ctc")
+ray_path = "Head/Camera3D/Weapons_Manager/WeaponRig/smgModel/SMGRay"
+light_path = "Head/Camera3D/Weapons_Manager/WeaponRig/smgModel/DirectionalLight3D"

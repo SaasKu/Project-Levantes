@@ -1,6 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkhyw5o1ojai"]
+[gd_scene load_steps=16 format=3 uid="uid://bkhyw5o1ojai"]
+
+[ext_resource type="PackedScene" uid="uid://cfde4dumfslig" path="res://player/player.tscn" id="1_8irtu"]
+[ext_resource type="Script" path="res://Scenes/state_machine_test_world.gd" id="1_uhjef"]
+[ext_resource type="PackedScene" uid="uid://d2ipjyem2oaxa" path="res://Models/Enemies/state_machine_test/smt.tscn" id="3_rmk8k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_2tm68"]
+vertices = PackedVector3Array(-90.3186, 0.33532, -7.23399, -2.3186, 0.33532, -7.23399, -2.3186, 0.33532, -9.23399, -90.3186, 0.33532, -7.23399, -2.3186, 0.33532, -9.23399, -0.0686035, 0.33532, -9.48399, -0.0686035, 0.33532, -129.984, -90.3186, 0.33532, -129.984, 16.9314, 0.33532, -0.983994, 17.1814, 0.33532, 0.266006, 18.6814, 0.33532, 0.266006, 18.6814, 0.33532, -5.73399, 2.1814, 0.33532, -9.23399, 18.6814, 0.33532, -5.73399, 19.9314, 0.33532, -5.98399, 19.9314, 0.33532, -129.984, -0.0686035, 0.33532, -129.984, 1.6814, 0.33532, -4.98399, 5.9314, 0.33532, -0.483994, 6.1814, 0.33532, -0.983994, 2.1814, 0.33532, -5.23399, -0.0686035, 0.33532, -129.984, -0.0686035, 0.33532, -9.48399, 2.1814, 0.33532, -9.23399, 2.1814, 0.33532, -9.23399, 2.1814, 0.33532, -5.23399, 6.1814, 0.33532, -0.983994, 16.9314, 0.33532, -0.983994, 18.6814, 0.33532, -5.73399, 20.9314, 0.33532, -5.73399, 20.9314, 0.33532, -3.73399, 90.4314, 0.33532, -3.73399, 19.9314, 0.33532, -5.98399, 20.9314, 0.33532, -5.73399, 90.4314, 0.33532, -3.73399, 90.4314, 0.33532, -129.984, 19.9314, 0.33532, -129.984, -1.3186, 3.58532, -8.48399, -1.3186, 3.58532, -5.98399, 1.1814, 3.58532, -5.98399, 1.1814, 3.58532, -8.48399, -1.0686, 0.33532, -8.23399, -1.0686, 0.33532, -6.23399, 0.931396, 0.33532, -6.23399, 0.931396, 0.33532, -8.23399, 18.6814, 0.33532, 0.266006, 17.1814, 0.33532, 0.266006, 16.9314, 0.33532, 1.26601, 18.6814, 0.33532, 16.016, 6.1814, 0.33532, 1.26601, 5.9314, 0.33532, -0.483994, 1.6814, 0.33532, -4.98399, -2.0686, 0.33532, -4.98399, 19.6814, 0.33532, 16.266, 18.6814, 0.33532, 16.016, -90.3186, 0.33532, -7.23399, -90.3186, 0.33532, 130.016, 19.6814, 0.33532, 130.016, -2.0686, 0.33532, -4.98399, -2.3186, 0.33532, -7.23399, -90.3186, 0.33532, -7.23399, 18.6814, 0.33532, 16.016, 16.9314, 0.33532, 1.26601, 6.1814, 0.33532, 1.26601, 18.6814, 0.33532, 16.016, 6.1814, 0.33532, 1.26601, -2.0686, 0.33532, -4.98399, -90.3186, 0.33532, -7.23399, 20.9314, 0.33532, 14.016, 90.4314, 0.33532, 14.016, 90.4314, 0.33532, -3.73399, 20.9314, 0.33532, -3.73399, 90.4314, 0.33532, 14.016, 20.9314, 0.33532, 14.016, 20.9314, 0.33532, 16.016, 90.4314, 0.33532, 14.016, 20.9314, 0.33532, 16.016, 19.6814, 0.33532, 16.266, 19.6814, 0.33532, 130.016, 90.4314, 0.33532, 130.016)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(4, 3, 5), PackedInt32Array(5, 3, 6), PackedInt32Array(6, 3, 7), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 11), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 16), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(23, 22, 21), PackedInt32Array(25, 24, 26), PackedInt32Array(26, 24, 27), PackedInt32Array(27, 24, 28), PackedInt32Array(31, 30, 29), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 36), PackedInt32Array(34, 36, 35), PackedInt32Array(40, 39, 37), PackedInt32Array(37, 39, 38), PackedInt32Array(44, 43, 41), PackedInt32Array(41, 43, 42), PackedInt32Array(46, 45, 47), PackedInt32Array(47, 45, 48), PackedInt32Array(50, 49, 51), PackedInt32Array(51, 49, 52), PackedInt32Array(54, 53, 55), PackedInt32Array(55, 53, 57), PackedInt32Array(55, 57, 56), PackedInt32Array(60, 59, 58), PackedInt32Array(63, 62, 61), PackedInt32Array(65, 64, 66), PackedInt32Array(66, 64, 67), PackedInt32Array(71, 70, 68), PackedInt32Array(68, 70, 69), PackedInt32Array(74, 73, 72), PackedInt32Array(76, 75, 77), PackedInt32Array(77, 75, 78), PackedInt32Array(78, 75, 79)]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v37cu"]
 
@@ -19,7 +25,21 @@ data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jugvo"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x83sr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_mm45y"]
+sky_material = SubResource("ProceduralSkyMaterial_x83sr")
+
+[sub_resource type="Environment" id="Environment_mdiys"]
+background_mode = 2
+sky = SubResource("Sky_mm45y")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_uhjef")
 
 [node name="Nav" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_2tm68")
@@ -63,3 +83,27 @@ skeleton = NodePath("../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Nav/Ground/MeshInstance3D/StaticBody3D"]
 shape = SubResource("BoxShape3D_jugvo")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_8irtu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 27.3891)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 5.26269, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mdiys")
+
+[node name="Smt" parent="." instance=ExtResource("3_rmk8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.13408, 0, 0)
+
+[node name="Smt2" parent="." instance=ExtResource("3_rmk8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1274, 0, -5.88687)
+
+[node name="Smt3" parent="." instance=ExtResource("3_rmk8k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1274, 0, 0.739126)
+
+[editable path="CharacterBody3D"]
+[editable path="CharacterBody3D/Head/Camera3D/Weapons_Manager/WeaponRig/smgModel"]
+[editable path="CharacterBody3D/Head/Camera3D/Weapons_Manager/WeaponRig/burst_rifle"]
+[editable path="CharacterBody3D/Head/Camera3D/Weapons_Manager/WeaponRig/sniper_rifle"]
