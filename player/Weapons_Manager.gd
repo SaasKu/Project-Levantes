@@ -230,10 +230,10 @@ func fire_Wep():
 					while Input.is_action_pressed("Shoot") and Current_Weapon.Curr_Mag_Ammo != 0 and Animation_Player.get_current_animation() != Current_Weapon.Reload_Ani:
 						Animation_Player.play(Current_Weapon.Fire_Ani)
 						$AudioStreamPlayer.play()
-						if %Ray.is_colliding():
-							#emit_signal("hit", %Ray.get_collider())
-							#print(%Ray.get_collider())
-							pass
+						#if %Ray.is_colliding():
+							##emit_signal("hit", %Ray.get_collider())
+							##print(%Ray.get_collider())
+							#pass
 						_raycast()
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished
@@ -286,18 +286,25 @@ func _raycast() -> void:
 	
 	var screen_center = get_viewport().size / 2
 	var origin = camera.project_ray_origin(screen_center)
+	#var endpoint = origin + camera.project_ray_normal(screen_center) * Current_Weapon.Projectile_Range
 	var endpoint = origin + camera.project_ray_normal(screen_center) * Current_Weapon.Projectile_Range
 	var query = PhysicsRayQueryParameters3D.create(origin, endpoint)
+	var intersection = get_world_3d().direct_space_state.intersect_ray(query)
 	query.collide_with_bodies = true
 	query.collide_with_areas = false
-	var result = space_state.intersect_ray(query)
-	if result:
-		#print(screen_center)
-		emit_signal("hit", %Ray.get_collider())
-		print(%Ray.get_collider())
-		make_spark(result.get("position"), origin-endpoint)
-
+	#var result = space_state.intersect_ray(query)
+	#if result:
+		##print(screen_center)
+		#make_spark(result.get("position"), origin-endpoint)
+	if not intersection.is_empty():
+		emit_signal("hit", intersection.get("collider"))
+		print(intersection.get("collider"))
+		
+	else:
+		print("nothing")
 func make_spark(impact_position: Vector3, raycast_angle: Vector3) -> void:
+	emit_signal("hit", %Ray.get_collider())
+	print(%Ray.get_collider())
 	var instance = Raycast_test.new()
 	instance.directionval = raycast_angle
 	instance.impactpoint = impact_position
