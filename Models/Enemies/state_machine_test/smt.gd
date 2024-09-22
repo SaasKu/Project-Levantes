@@ -7,6 +7,10 @@ var curr_state = "idle"
 var next_state = "idle"
 var prev_state
 
+var offset
+
+func _ready():
+	offset = add_rand_offset(2)
 func _physics_process(delta):
 	prev_state = curr_state
 	curr_state = next_state
@@ -23,7 +27,9 @@ func _physics_process(delta):
 func update_target_location(target_location):
 	nav_agent.target_position = target_location
 	
-
+func add_rand_offset(offset_amount) -> Vector3:
+	var offset = Vector3(randf() - offset_amount, 0, randf() - offset_amount).normalized() * offset_amount
+	return offset
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 	match curr_state:
@@ -31,10 +37,10 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 			velocity = Vector3.ZERO
 			move_and_slide()
 		"chase":
-			velocity = velocity.move_toward(safe_velocity, 0.25)
+			velocity = velocity.move_toward(safe_velocity+offset, 0.25)
 			move_and_slide()
 		"retreat":
-			velocity = velocity.move_toward(safe_velocity, 0.25)
+			velocity = velocity.move_toward(safe_velocity+offset, 0.25)
 			move_and_slide()
 			
 
