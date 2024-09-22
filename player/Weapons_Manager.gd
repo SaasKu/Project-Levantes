@@ -56,7 +56,7 @@ func _input(event):
 			exit(Weapon_Stack[Weapon_Indicator], false)
 	if event.is_action_pressed("Shoot"):
 		fire_Wep()
-		print("Weapon: " + Current_Weapon.Wep_Name + "\n" + "Weapon_Indicator: " + str(Weapon_Indicator))
+		#print("Weapon: " + Current_Weapon.Wep_Name + "\n" + "Weapon_Indicator: " + str(Weapon_Indicator))
 	if event.is_action_pressed("Reload"):
 		reload()
 	#if event.is_action_pressed("Drop_Weapon"):
@@ -202,7 +202,7 @@ func fire_Wep():
 							emit_signal("hit", %Ray.get_collider())
 							print(%Ray.get_collider())
 						_raycast()
-						print(str(Current_Weapon.Curr_Mag_Ammo) + "\n")
+						#print(str(Current_Weapon.Curr_Mag_Ammo) + "\n")
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished
 						hud.update_ammo(Current_Weapon.Curr_Mag_Ammo, Current_Weapon.Reserve_Ammo, Weapon_Indicator)
@@ -231,8 +231,9 @@ func fire_Wep():
 						Animation_Player.play(Current_Weapon.Fire_Ani)
 						$AudioStreamPlayer.play()
 						if %Ray.is_colliding():
-							emit_signal("hit", %Ray.get_collider())
-							print(%Ray.get_collider())
+							#emit_signal("hit", %Ray.get_collider())
+							#print(%Ray.get_collider())
+							pass
 						_raycast()
 						Current_Weapon.Curr_Mag_Ammo -= 1
 						await Animation_Player.animation_finished
@@ -291,7 +292,9 @@ func _raycast() -> void:
 	query.collide_with_areas = false
 	var result = space_state.intersect_ray(query)
 	if result:
-		print(screen_center)
+		#print(screen_center)
+		emit_signal("hit", %Ray.get_collider())
+		print(%Ray.get_collider())
 		make_spark(result.get("position"), origin-endpoint)
 
 func make_spark(impact_position: Vector3, raycast_angle: Vector3) -> void:
